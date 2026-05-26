@@ -126,9 +126,10 @@ html,body{min-height:100vh;background:var(--cream);font-family:'Noto Sans KR',sa
 footer{padding:1.25rem;display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid var(--border)}
 footer span{font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
 .pkg-sel-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem}
-.pkg-sel{border:0.5px solid var(--border);border-radius:2px;padding:1.125rem;cursor:pointer;background:var(--cream);transition:all .15s;position:relative}
+.pkg-sel{border:2px solid var(--border);border-radius:4px;padding:1.125rem;cursor:pointer;background:var(--cream);transition:all .2s;position:relative}
 .pkg-sel:hover{border-color:var(--rose-light)}
-.pkg-sel.on{border-color:var(--rose);background:#FBF5F0}
+.pkg-sel.on{border:2px solid var(--rose-mid);background:#FBF5F0;box-shadow:0 0 0 3px rgba(176,122,96,0.12)}
+.pkg-sel.on::after{content:'✓ 선택됨';position:absolute;bottom:0;left:0;right:0;background:var(--rose-mid);color:#fff;font-size:11px;letter-spacing:.06em;text-align:center;padding:5px 0;font-family:'Noto Sans KR',sans-serif}
 .pkg-tag{font-size:9px;letter-spacing:.1em;color:var(--ink-soft);margin-bottom:.5rem;font-family:'Cormorant Garamond',Georgia,serif}
 .pkg-nm{font-size:15px;color:var(--ink);font-family:'Cormorant Garamond',Georgia,serif;margin-bottom:.25rem}
 .pkg-pr{font-size:14px;color:var(--rose-mid);font-family:'Cormorant Garamond',Georgia,serif;margin-bottom:.75rem}
