@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team.Uphill — 관리자</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#F7F3EE;--cream2:#EDE8E0;--rose:#C9977A;--rose-light:#EDD9CC;
+  --rose-mid:#B07A60;--sage:#8A9181;--sage-light:#D6DAD1;
+  --ink:#3A3530;--ink-mid:#6B6560;--ink-soft:#9E9993;--border:#DDD8D0;
+}
+html,body{min-height:100vh;background:var(--cream2);font-family:'Noto Sans KR',sans-serif;color:var(--ink)}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:.875rem 1.25rem;background:var(--ink);position:sticky;top:0;z-index:50}
+.brand{font-family:'Cormorant Garamond',Georgia,serif;font-size:14px;letter-spacing:.14em;color:#fff}
+.brand em{color:var(--rose-light);font-style:normal}
+.admin-badge{font-size:10px;padding:3px 10px;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border-radius:20px;letter-spacing:.06em}
+.wrap{max-width:900px;margin:0 auto;padding:1.25rem}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem}
+.stat{background:var(--cream);border:0.5px solid var(--border);border-radius:2px;padding:1rem}
+.stat-n{font-size:26px;font-family:'Cormorant Garamond',Georgia,serif;color:var(--ink);font-weight:400;margin-bottom:2px}
+.stat-l{font-size:10px;color:var(--ink-soft);letter-spacing:.06em}
+.filter-row{display:flex;gap:8px;margin-bottom:1rem;align-items:center;flex-wrap:wrap}
+.filter-btn{padding:6px 14px;border:0.5px solid var(--border);border-radius:20px;font-size:11px;color:var(--ink-soft);cursor:pointer;background:var(--cream);transition:all .15s;font-family:'Noto Sans KR',sans-serif}
+.filter-btn.on{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.search-input{padding:7px 12px;border:0.5px solid var(--border);border-radius:2px;font-size:12px;background:var(--cream);color:var(--ink);font-family:'Noto Sans KR',sans-serif;outline:none;width:180px;-webkit-appearance:none}
+.search-input:focus{border-color:var(--rose)}
+.booking-list{display:flex;flex-direction:column;gap:8px}
+.booking-card{background:var(--cream);border:0.5px solid var(--border);border-radius:2px;overflow:hidden;transition:border-color .15s}
+.booking-card:hover{border-color:var(--rose-light)}
+.booking-card.expanded{border-color:var(--rose)}
+.bc-header{display:flex;align-items:center;gap:12px;padding:.875rem 1.125rem;cursor:pointer;flex-wrap:wrap}
+.bc-date{font-size:11px;color:var(--ink-soft);min-width:60px;font-family:'Cormorant Garamond',Georgia,serif;letter-spacing:.04em}
+.bc-name{font-size:14px;color:var(--ink);font-weight:400;min-width:70px}
+.bc-venue{font-size:11px;color:var(--ink-soft);flex:1}
+.bc-pkg{font-size:10px;padding:3px 8px;border-radius:20px;border:0.5px solid var(--border);color:var(--ink-mid);white-space:nowrap}
+.bc-pkg.plus{background:var(--ink);color:var(--rose-light);border-color:var(--ink)}
+.bc-status{font-size:10px;padding:3px 10px;border-radius:20px;white-space:nowrap;border:0.5px solid transparent}
+.status-pending{background:#FAEEDA;color:#633806;border-color:#FAC775}
+.status-confirmed{background:#EAF3DE;color:#27500A;border-color:#C0DD97}
+.status-shooting{background:#E6F1FB;color:#0C447C;border-color:#85B7EB}
+.status-retouching{background:var(--rose-light);color:var(--rose-mid);border-color:var(--rose)}
+.status-done{background:var(--sage-light);color:#085041;border-color:var(--sage)}
+.bc-arrow{font-size:14px;color:var(--ink-soft);transition:transform .2s;margin-left:auto}
+.expanded .bc-arrow{transform:rotate(180deg)}
+.bc-body{display:none;padding:1rem 1.125rem;border-top:0.5px solid var(--border)}
+.expanded .bc-body{display:block}
+.bc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.bc-section{font-size:10px;letter-spacing:.08em;color:var(--ink-soft);margin-bottom:.5rem;text-transform:uppercase}
+.bc-info{font-size:12px;color:var(--ink-mid);line-height:2}
+.bc-info span{color:var(--ink)}
+.assign-row{display:flex;gap:8px;align-items:center;margin-top:.375rem}
+.assign-input{flex:1;padding:8px 10px;border:0.5px solid var(--border);border-radius:2px;font-size:12px;background:var(--cream);color:var(--ink);font-family:'Noto Sans KR',sans-serif;outline:none;-webkit-appearance:none}
+.assign-input:focus{border-color:var(--rose)}
+.assign-btn{padding:8px 14px;background:var(--ink);color:var(--cream);border:none;border-radius:2px;font-size:11px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap;transition:opacity .15s}
+.assign-btn:hover{opacity:.85}
+.status-select{flex:1;padding:8px 10px;border:0.5px solid var(--border);border-radius:2px;font-size:12px;background:var(--cream);color:var(--ink);font-family:'Noto Sans KR',sans-serif;outline:none;cursor:pointer;-webkit-appearance:none}
+.update-btn{padding:8px 14px;background:var(--rose-mid);color:#fff;border:none;border-radius:2px;font-size:11px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap;transition:opacity .15s}
+.update-btn:hover{opacity:.9}
+.memo-area{width:100%;min-height:64px;padding:8px 10px;border:0.5px solid var(--border);border-radius:2px;font-size:12px;resize:vertical;font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--ink);outline:none;margin-top:.375rem}
+.memo-area:focus{border-color:var(--rose)}
+.empty{text-align:center;padding:3rem;color:var(--ink-soft);font-size:13px}
+.login-wrap{max-width:360px;margin:5rem auto;padding:2rem;background:var(--cream);border:0.5px solid var(--border);border-radius:2px}
+.login-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;color:var(--ink);margin-bottom:.375rem}
+.login-sub{font-size:12px;color:var(--ink-soft);margin-bottom:1.5rem;line-height:1.6}
+.login-field{margin-bottom:.875rem}
+.login-field label{display:block;font-size:10px;letter-spacing:.08em;color:var(--ink-soft);margin-bottom:.35rem;text-transform:uppercase}
+.login-field input{width:100%;padding:10px 12px;border:0.5px solid var(--border);border-radius:2px;font-size:13px;background:var(--cream);color:var(--ink);font-family:'Noto Sans KR',sans-serif;outline:none;-webkit-appearance:none}
+.login-field input:focus{border-color:var(--rose)}
+.login-btn{width:100%;padding:13px;background:var(--ink);color:var(--cream);border:none;border-radius:2px;font-size:12px;letter-spacing:.1em;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:opacity .15s}
+.login-btn:hover{opacity:.85}
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--cream);padding:.75rem 1.5rem;border-radius:2px;font-size:12px;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1}
+.refresh-btn{padding:6px 12px;border:0.5px solid rgba(255,255,255,0.2);border-radius:2px;font-size:11px;color:rgba(255,255,255,0.7);cursor:pointer;background:none;font-family:'Noto Sans KR',sans-serif;display:flex;align-items:center;gap:4px;transition:background .15s}
+.refresh-btn:hover{background:rgba(255,255,255,0.1)}
+.loading-row{text-align:center;padding:2.5rem;color:var(--ink-soft);font-size:12px}
+.field-label{font-size:11px;color:var(--ink-soft);margin-bottom:.375rem}
+@media(max-width:600px){
+  .bc-grid{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .bc-venue{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<!-- 로그인 -->
+<div id="s-login">
+  <div class="topbar">
+    <div class="brand">TEAM<em>.</em>UPHILL</div>
+    <span class="admin-badge">ADMIN</span>
+  </div>
+  <div class="login-wrap">
+    <div class="login-title">관리자 로그인</div>
+    <div class="login-sub">팀업힐 관리자만 접근할 수 있습니다.</div>
+    <div class="login-field"><label>아이디</label><input id="admin-id" placeholder="관리자 아이디" type="text" autocomplete="username"></div>
+    <div class="login-field"><label>비밀번호</label><input id="admin-pw" placeholder="비밀번호" type="password" autocomplete="current-password"></div>
+    <button class="login-btn" onclick="doLogin()">로그인</button>
+  </div>
+</div>
+
+<!-- 메인 대시보드 -->
+<div id="s-main" style="display:none">
+  <div class="topbar">
+    <div class="brand">TEAM<em>.</em>UPHILL <em style="font-size:10px;letter-spacing:.08em;margin-left:8px;opacity:.7">ADMIN</em></div>
+    <div style="display:flex;gap:8px">
+      <button class="refresh-btn" onclick="loadBookings()"><i class="ti ti-refresh"></i> 새로고침</button>
+      <button class="refresh-btn" onclick="doLogout()"><i class="ti ti-logout"></i> 로그아웃</button>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="stat-grid">
+      <div class="stat"><div class="stat-n" id="st-total" style="color:var(--rose-mid)">-</div><div class="stat-l">전체 예약</div></div>
+      <div class="stat"><div class="stat-n" id="st-pending" style="color:#BA7517">-</div><div class="stat-l">확인 대기</div></div>
+      <div class="stat"><div class="stat-n" id="st-progress" style="color:#185FA5">-</div><div class="stat-l">진행 중</div></div>
+      <div class="stat"><div class="stat-n" id="st-done" style="color:var(--sage)">-</div><div class="stat-l">납품 완료</div></div>
+    </div>
+    <div class="filter-row">
+      <button class="filter-btn on" onclick="setFilter('all',this)">전체</button>
+      <button class="filter-btn" onclick="setFilter('pending',this)">확인 대기</button>
+      <button class="filter-btn" onclick="setFilter('confirmed',this)">예약 확정</button>
+      <button class="filter-btn" onclick="setFilter('shooting',this)">촬영 완료</button>
+      <button class="filter-btn" onclick="setFilter('retouching',this)">리터칭 중</button>
+      <button class="filter-btn" onclick="setFilter('done',this)">납품 완료</button>
+      <input class="search-input" id="search" placeholder="이름 · 예식장 검색" oninput="renderList()">
+    </div>
+    <div class="booking-list" id="booking-list">
+      <div class="loading-row">예약 목록 불러오는 중...</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://dbimkejrhqkhjawyawba.supabase.co'
+const SUPABASE_KEY = 'sb_publishable_RSd57Yc0lUA-CTBeu6TfrQ_MK3R1Tbx'
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+
+const ADMIN_ID = 'teamuphill'
+const ADMIN_PW = 'uphill2024!'
+
+let allBookings = []
+let currentFilter = 'all'
+
+const STATUS_LABEL = {
+  pending: '확인 대기',
+  confirmed: '예약 확정',
+  shooting: '촬영 완료',
+  retouching: '리터칭 중',
+  done: '납품 완료'
+}
+const STATUS_CLASS = {
+  pending: 'status-pending',
+  confirmed: 'status-confirmed',
+  shooting: 'status-shooting',
+  retouching: 'status-retouching',
+  done: 'status-done'
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast')
+  t.textContent = msg
+  t.classList.add('show')
+  setTimeout(() => t.classList.remove('show'), 2500)
+}
+
+function doLogin() {
+  const id = document.getElementById('admin-id').value.trim()
+  const pw = document.getElementById('admin-pw').value
+  if (id === ADMIN_ID && pw === ADMIN_PW) {
+    document.getElementById('s-login').style.display = 'none'
+    document.getElementById('s-main').style.display = 'block'
+    loadBookings()
+  } else {
+    showToast('아이디 또는 비밀번호가 틀렸어요')
+  }
+}
+
+function doLogout() {
+  document.getElementById('s-login').style.display = 'block'
+  document.getElementById('s-main').style.display = 'none'
+  document.getElementById('admin-id').value = ''
+  document.getElementById('admin-pw').value = ''
+}
+
+async function loadBookings() {
+  document.getElementById('booking-list').innerHTML = '<div class="loading-row">불러오는 중...</div>'
+  const { data, error } = await sb.from('bookings').select('*').order('created_at', { ascending: false })
+  if (error) { showToast('불러오기 실패: ' + error.message); return }
+  allBookings = data || []
+  updateStats()
+  renderList()
+}
+
+function updateStats() {
+  document.getElementById('st-total').textContent = allBookings.length
+  document.getElementById('st-pending').textContent = allBookings.filter(b => b.status === 'pending').length
+  document.getElementById('st-progress').textContent = allBookings.filter(b => ['confirmed','shooting','retouching'].includes(b.status)).length
+  document.getElementById('st-done').textContent = allBookings.filter(b => b.status === 'done').length
+}
+
+function setFilter(f, el) {
+  currentFilter = f
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('on'))
+  el.classList.add('on')
+  renderList()
+}
+
+function renderList() {
+  const q = document.getElementById('search').value.toLowerCase()
+  let list = allBookings
+  if (currentFilter !== 'all') list = list.filter(b => b.status === currentFilter)
+  if (q) list = list.filter(b =>
+    (b.bride_name||'').includes(q) ||
+    (b.venue||'').toLowerCase().includes(q) ||
+    (b.phone||'').includes(q)
+  )
+
+  const container = document.getElementById('booking-list')
+  if (list.length === 0) {
+    container.innerHTML = '<div class="empty">해당 예약이 없어요</div>'
+    return
+  }
+
+  container.innerHTML = list.map(b => {
+    const d = new Date(b.wedding_date)
+    const dateStr = `${d.getMonth()+1}/${d.getDate()}`
+    const isPlus = b.package === 'plus'
+    const statusClass = STATUS_CLASS[b.status] || 'status-pending'
+    const statusLabel = STATUS_LABEL[b.status] || '확인 대기'
+    const createdAt = new Date(b.created_at).toLocaleDateString('ko-KR', {month:'numeric',day:'numeric'})
+
+    return `
+    <div class="booking-card" id="card-${b.id}">
+      <div class="bc-header" onclick="toggleCard('${b.id}')">
+        <span class="bc-date">${dateStr}</span>
+        <span class="bc-name">${b.bride_name}</span>
+        <span class="bc-venue">${b.venue}</span>
+        <span class="bc-pkg ${isPlus?'plus':''}">${isPlus?'플러스':'베이직'}</span>
+        <span class="bc-status ${statusClass}">${statusLabel}</span>
+        <i class="ti ti-chevron-down bc-arrow"></i>
+      </div>
+      <div class="bc-body">
+        <div class="bc-grid">
+          <div>
+            <div class="bc-section">예약 정보</div>
+            <div class="bc-info">
+              연락처&nbsp;&nbsp;<span>${b.phone}</span><br>
+              카카오&nbsp;&nbsp;<span>${b.kakao_id||'-'}</span><br>
+              예식일&nbsp;&nbsp;<span>${b.wedding_date}</span><br>
+              시간&nbsp;&nbsp;&nbsp;&nbsp;<span>${b.wedding_time||'-'}</span><br>
+              예식장&nbsp;&nbsp;<span>${b.venue}</span><br>
+              플래너&nbsp;&nbsp;<span>${b.planner_phone||'-'}</span><br>
+              상품&nbsp;&nbsp;&nbsp;&nbsp;<span>${isPlus?'플러스 · 400,000원':'베이직 · 300,000원'}</span><br>
+              신청일&nbsp;&nbsp;<span>${createdAt}</span>
+            </div>
+          </div>
+          <div>
+            <div class="bc-section">배정 관리</div>
+            <div style="margin-bottom:1rem">
+              <div class="field-label">촬영자 (홈마)</div>
+              <div class="assign-row">
+                <input class="assign-input" id="shooter-${b.id}" placeholder="촬영자 이름" value="${b.shooter||''}">
+                <button class="assign-btn" onclick="saveField('${b.id}','shooter')">저장</button>
+              </div>
+            </div>
+            <div style="margin-bottom:1rem">
+              <div class="field-label">리터처</div>
+              <div class="assign-row">
+                <input class="assign-input" id="retoucher-${b.id}" placeholder="리터처 이름" value="${b.retoucher||''}">
+                <button class="assign-btn" onclick="saveField('${b.id}','retoucher')">저장</button>
+              </div>
+            </div>
+            <div class="bc-section" style="margin-top:.75rem">상태 변경</div>
+            <div class="assign-row">
+              <select class="status-select" id="status-${b.id}">
+                <option value="pending" ${b.status==='pending'?'selected':''}>확인 대기</option>
+                <option value="confirmed" ${b.status==='confirmed'?'selected':''}>예약 확정</option>
+                <option value="shooting" ${b.status==='shooting'?'selected':''}>촬영 완료</option>
+                <option value="retouching" ${b.status==='retouching'?'selected':''}>리터칭 중</option>
+                <option value="done" ${b.status==='done'?'selected':''}>납품 완료</option>
+              </select>
+              <button class="update-btn" onclick="updateStatus('${b.id}')">변경</button>
+            </div>
+            <div class="bc-section" style="margin-top:1rem">관리자 메모</div>
+            <textarea class="memo-area" id="memo-${b.id}" placeholder="내부 메모 (신부에게 보이지 않아요)">${b.memo||''}</textarea>
+            <div style="text-align:right;margin-top:.375rem">
+              <button class="assign-btn" onclick="saveField('${b.id}','memo')">메모 저장</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`
+  }).join('')
+}
+
+function toggleCard(id) {
+  document.getElementById('card-' + id).classList.toggle('expanded')
+}
+
+async function saveField(id, field) {
+  const val = document.getElementById(`${field}-${id}`).value
+  const { error } = await sb.from('bookings').update({ [field]: val }).eq('id', id)
+  if (error) { showToast('저장 실패'); return }
+  const b = allBookings.find(b => b.id === id)
+  if (b) b[field] = val
+  showToast(field === 'memo' ? '메모 저장됨' : '배정 저장됨')
+}
+
+async function updateStatus(id) {
+  const val = document.getElementById(`status-${id}`).value
+  const { error } = await sb.from('bookings').update({ status: val }).eq('id', id)
+  if (error) { showToast('변경 실패'); return }
+  const b = allBookings.find(b => b.id === id)
+  if (b) b.status = val
+  updateStats()
+  renderList()
+  showToast('상태 변경됨 → ' + STATUS_LABEL[val])
+}
+
+document.getElementById('admin-pw').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doLogin()
+})
+</script>
+</body>
+</html>
