@@ -19,31 +19,22 @@ html,body{min-height:100vh;background:var(--cream2);font-family:'Noto Sans KR',s
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:.875rem 1.25rem;background:var(--ink);position:sticky;top:0;z-index:50}
 .brand{font-family:'Cormorant Garamond',Georgia,serif;font-size:14px;letter-spacing:.14em;color:#fff}
 .brand em{color:var(--rose-light);font-style:normal}
-.top-right{display:flex;gap:8px;align-items:center}
 .top-btn{padding:6px 12px;border:0.5px solid rgba(255,255,255,0.2);border-radius:2px;font-size:11px;color:rgba(255,255,255,0.7);cursor:pointer;background:none;font-family:'Noto Sans KR',sans-serif;display:flex;align-items:center;gap:4px;transition:background .15s}
 .top-btn:hover{background:rgba(255,255,255,0.1)}
 .wrap{max-width:900px;margin:0 auto;padding:1.25rem}
-
-/* 탭 */
 .main-tab{display:flex;gap:0;border-bottom:0.5px solid var(--border);margin-bottom:1.5rem}
 .mtab{padding:10px 20px;font-size:12px;letter-spacing:.06em;color:var(--ink-soft);cursor:pointer;border-bottom:1.5px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:'Noto Sans KR',sans-serif;transition:color .15s;margin-bottom:-0.5px}
 .mtab.on{color:var(--rose-mid);border-bottom-color:var(--rose-mid)}
 .tab-panel{display:none}.tab-panel.on{display:block}
-
-/* 통계 */
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem}
 .stat{background:var(--cream);border:0.5px solid var(--border);border-radius:2px;padding:1rem}
 .stat-n{font-size:26px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;margin-bottom:2px}
 .stat-l{font-size:10px;color:var(--ink-soft);letter-spacing:.06em}
-
-/* 필터 */
 .filter-row{display:flex;gap:8px;margin-bottom:1rem;align-items:center;flex-wrap:wrap}
 .filter-btn{padding:6px 14px;border:0.5px solid var(--border);border-radius:20px;font-size:11px;color:var(--ink-soft);cursor:pointer;background:var(--cream);transition:all .15s;font-family:'Noto Sans KR',sans-serif}
 .filter-btn.on{background:var(--ink);color:var(--cream);border-color:var(--ink)}
 .search-input{padding:7px 12px;border:0.5px solid var(--border);border-radius:2px;font-size:12px;background:var(--cream);color:var(--ink);font-family:'Noto Sans KR',sans-serif;outline:none;width:180px}
 .search-input:focus{border-color:var(--rose)}
-
-/* 예약 카드 */
 .booking-list{display:flex;flex-direction:column;gap:8px}
 .booking-card{background:var(--cream);border:0.5px solid var(--border);border-radius:2px;overflow:hidden;transition:border-color .15s}
 .booking-card:hover{border-color:var(--rose-light)}
@@ -81,32 +72,43 @@ html,body{min-height:100vh;background:var(--cream2);font-family:'Noto Sans KR',s
 .field-label{font-size:11px;color:var(--ink-soft);margin-bottom:.375rem}
 
 /* 팀원 관리 */
-.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
-.team-section{background:var(--cream);border:0.5px solid var(--border);border-radius:2px;padding:1.25rem}
-.team-title{font-size:13px;color:var(--ink);margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between}
-.team-title span{font-size:10px;letter-spacing:.08em;color:var(--ink-soft);text-transform:uppercase}
-.member-list{display:flex;flex-direction:column;gap:6px;margin-bottom:1rem}
-.member-item{display:flex;align-items:center;justify-content:space-between;padding:.625rem .875rem;border:0.5px solid var(--border);border-radius:2px;background:var(--cream2)}
-.member-name{font-size:13px;color:var(--ink)}
-.member-role{font-size:10px;color:var(--ink-soft);margin-top:1px}
-.member-del{background:none;border:none;cursor:pointer;color:var(--ink-soft);font-size:14px;padding:2px;transition:color .15s}
-.member-del:hover{color:#E24B4A}
-.member-count{font-size:10px;color:var(--ink-soft);background:var(--cream2);padding:2px 7px;border-radius:10px;border:0.5px solid var(--border)}
-.add-member-row{display:flex;gap:8px}
-.add-member-input{flex:1;padding:9px 12px;border:0.5px solid var(--border);border-radius:2px;font-size:13px;background:var(--cream);color:var(--ink);font-family:'Noto Sans KR',sans-serif;outline:none}
-.add-member-input:focus{border-color:var(--rose)}
-.add-btn{padding:9px 16px;background:var(--rose-mid);color:#fff;border:none;border-radius:2px;font-size:12px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap}
-.add-btn:hover{opacity:.9}
-.empty-member{font-size:12px;color:var(--ink-soft);text-align:center;padding:1.5rem;border:0.5px dashed var(--border);border-radius:2px;margin-bottom:1rem}
+.team-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.team-tab-row{display:flex;gap:8px;margin-bottom:1.25rem}
+.team-tab{padding:7px 16px;border:0.5px solid var(--border);border-radius:20px;font-size:11px;color:var(--ink-soft);cursor:pointer;background:var(--cream);font-family:'Noto Sans KR',sans-serif;transition:all .15s}
+.team-tab.on{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.add-member-btn{padding:8px 18px;background:var(--rose-mid);color:#fff;border:none;border-radius:2px;font-size:12px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;display:flex;align-items:center;gap:5px}
+.add-member-btn:hover{opacity:.9}
+.member-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.member-card{background:var(--cream);border:0.5px solid var(--border);border-radius:2px;padding:1.125rem;position:relative;transition:border-color .15s}
+.member-card:hover{border-color:var(--rose-light)}
+.member-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.875rem}
+.member-avatar{width:40px;height:40px;border-radius:50%;background:var(--rose-light);border:0.5px solid var(--rose);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--rose-mid);font-family:'Cormorant Garamond',Georgia,serif}
+.member-actions{display:flex;gap:4px}
+.icon-btn{width:28px;height:28px;border:0.5px solid var(--border);border-radius:2px;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink-soft);transition:all .15s}
+.icon-btn:hover{border-color:var(--rose);color:var(--rose-mid)}
+.icon-btn.del:hover{border-color:#E24B4A;color:#E24B4A}
+.member-name{font-size:14px;color:var(--ink);margin-bottom:2px}
+.member-role-badge{display:inline-block;font-size:9px;padding:2px 8px;border-radius:10px;background:var(--cream2);color:var(--ink-soft);border:0.5px solid var(--border);margin-bottom:.75rem;letter-spacing:.04em}
+.member-info-row{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-soft);margin-bottom:.25rem}
+.member-info-row i{font-size:12px;flex-shrink:0}
+.member-count-badge{font-size:10px;padding:2px 8px;border-radius:10px;background:#EAF3DE;color:#27500A;border:0.5px solid #C0DD97;margin-top:.75rem;display:inline-block}
 
-/* 스케줄 뷰 */
-.schedule-list{display:flex;flex-direction:column;gap:6px;margin-top:1rem}
-.schedule-item{display:flex;align-items:center;gap:10px;padding:.625rem .875rem;background:var(--cream2);border-radius:2px;font-size:12px}
-.sch-name{color:var(--ink);min-width:80px;font-weight:400}
-.sch-count{font-size:11px;color:var(--ink-soft)}
-.sch-badge{font-size:10px;padding:2px 8px;border-radius:10px;background:var(--rose-light);color:var(--rose-mid);margin-left:auto}
+/* 모달 */
+.modal-bg{position:fixed;inset:0;background:rgba(58,53,48,0.5);z-index:100;display:flex;align-items:center;justify-content:center;padding:1rem}
+.modal{background:var(--cream);border-radius:2px;padding:1.5rem;width:100%;max-width:480px;max-height:90vh;overflow-y:auto}
+.modal-title{font-size:16px;color:var(--ink);margin-bottom:1.25rem;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400}
+.modal-field{margin-bottom:.875rem}
+.modal-field label{display:block;font-size:10px;letter-spacing:.08em;color:var(--ink-soft);margin-bottom:.35rem;text-transform:uppercase}
+.modal-field input,.modal-field select,.modal-field textarea{width:100%;padding:9px 12px;border:0.5px solid var(--border);border-radius:2px;font-size:13px;background:var(--cream);color:var(--ink);font-family:'Noto Sans KR',sans-serif;outline:none;transition:border-color .2s}
+.modal-field input:focus,.modal-field select:focus,.modal-field textarea:focus{border-color:var(--rose)}
+.modal-field textarea{min-height:72px;resize:vertical}
+.modal-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modal-btns{display:flex;gap:8px;margin-top:1.25rem}
+.modal-save{flex:1;padding:12px;background:var(--ink);color:var(--cream);border:none;border-radius:2px;font-size:12px;letter-spacing:.1em;cursor:pointer;font-family:'Noto Sans KR',sans-serif}
+.modal-save:hover{opacity:.85}
+.modal-cancel{padding:12px 20px;background:transparent;color:var(--ink-soft);border:0.5px solid var(--border);border-radius:2px;font-size:12px;cursor:pointer;font-family:'Noto Sans KR',sans-serif}
+.modal-cancel:hover{border-color:var(--rose);color:var(--rose-mid)}
 
-/* 로그인 */
 .login-wrap{max-width:360px;margin:5rem auto;padding:2rem;background:var(--cream);border:0.5px solid var(--border);border-radius:2px}
 .login-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;color:var(--ink);margin-bottom:.375rem}
 .login-sub{font-size:12px;color:var(--ink-soft);margin-bottom:1.5rem;line-height:1.6}
@@ -116,23 +118,54 @@ html,body{min-height:100vh;background:var(--cream2);font-family:'Noto Sans KR',s
 .login-field input:focus{border-color:var(--rose)}
 .login-btn{width:100%;padding:13px;background:var(--ink);color:var(--cream);border:none;border-radius:2px;font-size:12px;letter-spacing:.1em;cursor:pointer;font-family:'Noto Sans KR',sans-serif}
 .login-btn:hover{opacity:.85}
-
 .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--cream);padding:.75rem 1.5rem;border-radius:2px;font-size:12px;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1}
 .loading-row{text-align:center;padding:2.5rem;color:var(--ink-soft);font-size:12px}
 .empty{text-align:center;padding:3rem;color:var(--ink-soft);font-size:13px}
-
 @media(max-width:600px){
-  .bc-grid{grid-template-columns:1fr}
+  .bc-grid,.member-grid{grid-template-columns:1fr}
   .stat-grid{grid-template-columns:repeat(2,1fr)}
   .bc-venue{display:none}
-  .team-grid{grid-template-columns:1fr}
+  .modal-row2{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
 <div class="toast" id="toast"></div>
+
+<!-- 팀원 등록/수정 모달 -->
+<div class="modal-bg" id="modal" style="display:none">
+  <div class="modal">
+    <div class="modal-title" id="modal-title">팀원 등록</div>
+    <div class="modal-field">
+      <label>역할</label>
+      <select id="m-role">
+        <option value="shooter">촬영자 (홈마)</option>
+        <option value="retoucher">리터처</option>
+      </select>
+    </div>
+    <div class="modal-row2">
+      <div class="modal-field"><label>이름 *</label><input id="m-name" placeholder="홍길동"></div>
+      <div class="modal-field"><label>거주지</label><input id="m-location" placeholder="서울 강남구"></div>
+    </div>
+    <div class="modal-row2">
+      <div class="modal-field"><label>연락처</label><input id="m-phone" placeholder="010-0000-0000" type="tel"></div>
+      <div class="modal-field"><label>카카오톡 ID</label><input id="m-kakao" placeholder="카카오 ID"></div>
+    </div>
+    <div class="modal-field"><label>인스타그램</label><input id="m-instagram" placeholder="@username"></div>
+    <div class="modal-row2">
+      <div class="modal-field"><label>카메라 기종</label><input id="m-camera" placeholder="Sony A7IV"></div>
+      <div class="modal-field"><label>렌즈</label><input id="m-lens" placeholder="85mm f1.4, 35mm f1.8"></div>
+    </div>
+    <div class="modal-field"><label>메모 / 특이사항</label><textarea id="m-note" placeholder="특기사항, 스타일, 주의사항 등"></textarea></div>
+    <input type="hidden" id="m-id">
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">취소</button>
+      <button class="modal-save" onclick="saveMember()">저장하기</button>
+    </div>
+  </div>
+</div>
 
 <!-- 로그인 -->
 <div id="s-login">
@@ -153,19 +186,18 @@ html,body{min-height:100vh;background:var(--cream2);font-family:'Noto Sans KR',s
 <div id="s-main" style="display:none">
   <div class="topbar">
     <div class="brand">TEAM<em>.</em>UPHILL <em style="font-size:10px;letter-spacing:.08em;margin-left:8px;opacity:.6">ADMIN</em></div>
-    <div class="top-right">
+    <div style="display:flex;gap:8px">
       <button class="top-btn" onclick="loadAll()"><i class="ti ti-refresh"></i> 새로고침</button>
       <button class="top-btn" onclick="doLogout()"><i class="ti ti-logout"></i> 로그아웃</button>
     </div>
   </div>
   <div class="wrap">
-    <!-- 메인 탭 -->
     <div class="main-tab">
       <button class="mtab on" onclick="goTab('bookings',this)">예약 관리</button>
       <button class="mtab" onclick="goTab('team',this)">팀원 관리</button>
     </div>
 
-    <!-- 예약 관리 탭 -->
+    <!-- 예약 관리 -->
     <div id="tab-bookings" class="tab-panel on">
       <div class="stat-grid">
         <div class="stat"><div class="stat-n" id="st-total" style="color:var(--rose-mid)">-</div><div class="stat-l">전체 예약</div></div>
@@ -182,41 +214,20 @@ html,body{min-height:100vh;background:var(--cream2);font-family:'Noto Sans KR',s
         <button class="filter-btn" onclick="setFilter('done',this)">납품 완료</button>
         <input class="search-input" id="search" placeholder="이름 · 예식장 검색" oninput="renderBookings()">
       </div>
-      <div class="booking-list" id="booking-list">
-        <div class="loading-row">불러오는 중...</div>
-      </div>
+      <div class="booking-list" id="booking-list"><div class="loading-row">불러오는 중...</div></div>
     </div>
 
-    <!-- 팀원 관리 탭 -->
+    <!-- 팀원 관리 -->
     <div id="tab-team" class="tab-panel">
-      <div class="team-grid">
-        <!-- 촬영자 -->
-        <div class="team-section">
-          <div class="team-title">
-            <span>SHOOTER</span>
-            촬영자 (홈마) 관리
-          </div>
-          <div class="member-list" id="shooter-list"></div>
-          <div class="add-member-row">
-            <input class="add-member-input" id="shooter-input" placeholder="촬영자 이름 입력" type="text">
-            <button class="add-btn" onclick="addMember('shooter')">등록</button>
-          </div>
-          <div class="schedule-list" id="shooter-schedule"></div>
+      <div class="team-header">
+        <div class="team-tab-row">
+          <button class="team-tab on" onclick="setTeamFilter('all',this)">전체</button>
+          <button class="team-tab" onclick="setTeamFilter('shooter',this)">촬영자</button>
+          <button class="team-tab" onclick="setTeamFilter('retoucher',this)">리터처</button>
         </div>
-        <!-- 리터처 -->
-        <div class="team-section">
-          <div class="team-title">
-            <span>RETOUCHER</span>
-            리터처 관리
-          </div>
-          <div class="member-list" id="retoucher-list"></div>
-          <div class="add-member-row">
-            <input class="add-member-input" id="retoucher-input" placeholder="리터처 이름 입력" type="text">
-            <button class="add-btn" onclick="addMember('retoucher')">등록</button>
-          </div>
-          <div class="schedule-list" id="retoucher-schedule"></div>
-        </div>
+        <button class="add-member-btn" onclick="openModal()"><i class="ti ti-plus"></i> 팀원 등록</button>
       </div>
+      <div class="member-grid" id="member-grid"><div class="loading-row">불러오는 중...</div></div>
     </div>
   </div>
 </div>
@@ -230,9 +241,9 @@ const ADMIN_ID = 'teamuphill'
 const ADMIN_PW = 'uphill2024!'
 
 let allBookings = []
-let shooters = JSON.parse(localStorage.getItem('tu_shooters') || '[]')
-let retouchers = JSON.parse(localStorage.getItem('tu_retouchers') || '[]')
+let allMembers = []
 let currentFilter = 'all'
+let teamFilter = 'all'
 
 const STATUS_LABEL = { pending:'확인 대기', confirmed:'예약 확정', shooting:'촬영 완료', retouching:'리터칭 중', done:'납품 완료' }
 const STATUS_CLASS = { pending:'status-pending', confirmed:'status-confirmed', shooting:'status-shooting', retouching:'status-retouching', done:'status-done' }
@@ -251,9 +262,7 @@ function doLogin() {
     document.getElementById('s-login').style.display = 'none'
     document.getElementById('s-main').style.display = 'block'
     loadAll()
-  } else {
-    showToast('아이디 또는 비밀번호가 틀렸어요')
-  }
+  } else { showToast('아이디 또는 비밀번호가 틀렸어요') }
 }
 
 function doLogout() {
@@ -269,18 +278,20 @@ function goTab(id, el) {
 }
 
 async function loadAll() {
-  await loadBookings()
-  renderTeam()
+  await Promise.all([loadBookings(), loadMembers()])
 }
 
 async function loadBookings() {
-  document.getElementById('booking-list').innerHTML = '<div class="loading-row">불러오는 중...</div>'
-  const { data, error } = await sb.from('bookings').select('*').order('created_at', { ascending: false })
-  if (error) { showToast('불러오기 실패'); return }
+  const { data } = await sb.from('bookings').select('*').order('created_at', { ascending: false })
   allBookings = data || []
   updateStats()
   renderBookings()
-  renderSchedule()
+}
+
+async function loadMembers() {
+  const { data } = await sb.from('team_members').select('*').order('created_at', { ascending: false })
+  allMembers = data || []
+  renderMembers()
 }
 
 function updateStats() {
@@ -297,27 +308,32 @@ function setFilter(f, el) {
   renderBookings()
 }
 
+function setTeamFilter(f, el) {
+  teamFilter = f
+  document.querySelectorAll('.team-tab').forEach(t => t.classList.remove('on'))
+  el.classList.add('on')
+  renderMembers()
+}
+
 function renderBookings() {
-  const q = document.getElementById('search').value.toLowerCase()
+  const q = (document.getElementById('search').value || '').toLowerCase()
   let list = allBookings
   if (currentFilter !== 'all') list = list.filter(b => b.status === currentFilter)
-  if (q) list = list.filter(b => (b.bride_name||'').includes(q) || (b.venue||'').toLowerCase().includes(q) || (b.phone||'').includes(q))
+  if (q) list = list.filter(b => (b.bride_name||'').includes(q) || (b.venue||'').toLowerCase().includes(q))
 
   const container = document.getElementById('booking-list')
-  if (list.length === 0) { container.innerHTML = '<div class="empty">해당 예약이 없어요</div>'; return }
+  if (!list.length) { container.innerHTML = '<div class="empty">해당 예약이 없어요</div>'; return }
+
+  const shooterList = allMembers.filter(m => m.role === 'shooter' && m.is_active)
+  const retoucherList = allMembers.filter(m => m.role === 'retoucher' && m.is_active)
 
   container.innerHTML = list.map(b => {
     const d = new Date(b.wedding_date)
     const dateStr = `${d.getMonth()+1}/${d.getDate()}`
     const isPlus = b.package === 'plus'
     const createdAt = new Date(b.created_at).toLocaleDateString('ko-KR', {month:'numeric', day:'numeric'})
-
-    const shooterOptions = ['<option value="">선택 안 함</option>',
-      ...shooters.map(s => `<option value="${s}" ${b.shooter===s?'selected':''}>${s}</option>`)
-    ].join('')
-    const retoucherOptions = ['<option value="">선택 안 함</option>',
-      ...retouchers.map(r => `<option value="${r}" ${b.retoucher===r?'selected':''}>${r}</option>`)
-    ].join('')
+    const shooterOpts = ['<option value="">선택 안 함</option>', ...shooterList.map(m => `<option value="${m.name}" ${b.shooter===m.name?'selected':''}>${m.name}</option>`)].join('')
+    const retoucherOpts = ['<option value="">선택 안 함</option>', ...retoucherList.map(m => `<option value="${m.name}" ${b.retoucher===m.name?'selected':''}>${m.name}</option>`)].join('')
 
     return `
     <div class="booking-card" id="card-${b.id}">
@@ -349,14 +365,14 @@ function renderBookings() {
             <div style="margin-bottom:1rem">
               <div class="field-label">촬영자 (홈마)</div>
               <div class="assign-row">
-                <select class="assign-select" id="shooter-${b.id}">${shooterOptions}</select>
+                <select class="assign-select" id="shooter-${b.id}">${shooterOpts}</select>
                 <button class="assign-btn" onclick="saveField('${b.id}','shooter')">저장</button>
               </div>
             </div>
             <div style="margin-bottom:1rem">
               <div class="field-label">리터처</div>
               <div class="assign-row">
-                <select class="assign-select" id="retoucher-${b.id}">${retoucherOptions}</select>
+                <select class="assign-select" id="retoucher-${b.id}">${retoucherOpts}</select>
                 <button class="assign-btn" onclick="saveField('${b.id}','retoucher')">저장</button>
               </div>
             </div>
@@ -383,18 +399,50 @@ function renderBookings() {
   }).join('')
 }
 
+function renderMembers() {
+  let list = allMembers
+  if (teamFilter !== 'all') list = list.filter(m => m.role === teamFilter)
+  const container = document.getElementById('member-grid')
+  if (!list.length) {
+    container.innerHTML = '<div class="empty">등록된 팀원이 없어요.<br>팀원 등록 버튼을 눌러 추가해주세요.</div>'
+    return
+  }
+  container.innerHTML = list.map(m => {
+    const count = allBookings.filter(b => b.shooter === m.name || b.retoucher === m.name).length
+    const roleLabel = m.role === 'shooter' ? '촬영자 (홈마)' : '리터처'
+    return `
+    <div class="member-card">
+      <div class="member-card-top">
+        <div class="member-avatar">${m.name.charAt(0)}</div>
+        <div class="member-actions">
+          <button class="icon-btn" onclick="openModal('${m.id}')" title="수정"><i class="ti ti-edit"></i></button>
+          <button class="icon-btn del" onclick="deleteMember('${m.id}','${m.name}')" title="삭제"><i class="ti ti-trash"></i></button>
+        </div>
+      </div>
+      <div class="member-name">${m.name}</div>
+      <div class="member-role-badge">${roleLabel}</div>
+      ${m.location ? `<div class="member-info-row"><i class="ti ti-map-pin"></i>${m.location}</div>` : ''}
+      ${m.phone ? `<div class="member-info-row"><i class="ti ti-phone"></i>${m.phone}</div>` : ''}
+      ${m.kakao_id ? `<div class="member-info-row"><i class="ti ti-brand-kakao"></i>${m.kakao_id}</div>` : ''}
+      ${m.instagram ? `<div class="member-info-row"><i class="ti ti-brand-instagram"></i>${m.instagram}</div>` : ''}
+      ${m.camera ? `<div class="member-info-row"><i class="ti ti-camera"></i>${m.camera}</div>` : ''}
+      ${m.lens ? `<div class="member-info-row"><i class="ti ti-adjustments"></i>${m.lens}</div>` : ''}
+      ${m.note ? `<div class="member-info-row" style="margin-top:.25rem"><i class="ti ti-notes"></i><span style="color:var(--ink-mid)">${m.note}</span></div>` : ''}
+      ${count > 0 ? `<div class="member-count-badge">담당 ${count}건</div>` : ''}
+    </div>`
+  }).join('')
+}
+
 function toggleCard(id) {
   document.getElementById('card-' + id).classList.toggle('expanded')
 }
 
 async function saveField(id, field) {
-  const el = document.getElementById(`${field}-${id}`)
-  const val = el.value
+  const val = document.getElementById(`${field}-${id}`).value
   const { error } = await sb.from('bookings').update({ [field]: val }).eq('id', id)
   if (error) { showToast('저장 실패'); return }
   const b = allBookings.find(b => b.id === id)
   if (b) b[field] = val
-  renderSchedule()
   showToast(field === 'memo' ? '메모 저장됨' : '배정 저장됨')
 }
 
@@ -409,88 +457,86 @@ async function updateStatus(id) {
   showToast('상태 변경됨 → ' + STATUS_LABEL[val])
 }
 
-// ── 팀원 관리 ──
-function renderTeam() {
-  renderMemberList('shooter')
-  renderMemberList('retoucher')
-  renderSchedule()
-}
-
-function renderMemberList(type) {
-  const list = type === 'shooter' ? shooters : retouchers
-  const container = document.getElementById(`${type}-list`)
-  if (list.length === 0) {
-    container.innerHTML = `<div class="empty-member">${type === 'shooter' ? '등록된 촬영자가 없어요' : '등록된 리터처가 없어요'}</div>`
-    return
+// ── 팀원 모달 ──
+function openModal(id) {
+  const modal = document.getElementById('modal')
+  if (id) {
+    const m = allMembers.find(m => m.id === id)
+    if (!m) return
+    document.getElementById('modal-title').textContent = '팀원 정보 수정'
+    document.getElementById('m-id').value = m.id
+    document.getElementById('m-role').value = m.role
+    document.getElementById('m-name').value = m.name || ''
+    document.getElementById('m-location').value = m.location || ''
+    document.getElementById('m-phone').value = m.phone || ''
+    document.getElementById('m-kakao').value = m.kakao_id || ''
+    document.getElementById('m-instagram').value = m.instagram || ''
+    document.getElementById('m-camera').value = m.camera || ''
+    document.getElementById('m-lens').value = m.lens || ''
+    document.getElementById('m-note').value = m.note || ''
+  } else {
+    document.getElementById('modal-title').textContent = '팀원 등록'
+    document.getElementById('m-id').value = ''
+    document.getElementById('m-role').value = 'shooter'
+    document.getElementById('m-name').value = ''
+    document.getElementById('m-location').value = ''
+    document.getElementById('m-phone').value = ''
+    document.getElementById('m-kakao').value = ''
+    document.getElementById('m-instagram').value = ''
+    document.getElementById('m-camera').value = ''
+    document.getElementById('m-lens').value = ''
+    document.getElementById('m-note').value = ''
   }
-  container.innerHTML = list.map((name, i) => {
-    const count = allBookings.filter(b => b[type] === name).length
-    return `
-    <div class="member-item">
-      <div>
-        <div class="member-name">${name}</div>
-        <div class="member-role">${type === 'shooter' ? '촬영자 (홈마)' : '리터처'} · 담당 ${count}건</div>
-      </div>
-      <button class="member-del" onclick="deleteMember('${type}',${i})" title="삭제">
-        <i class="ti ti-x"></i>
-      </button>
-    </div>`
-  }).join('')
+  modal.style.display = 'flex'
 }
 
-function renderSchedule() {
-  renderScheduleFor('shooter')
-  renderScheduleFor('retoucher')
+function closeModal() {
+  document.getElementById('modal').style.display = 'none'
 }
 
-function renderScheduleFor(type) {
-  const list = type === 'shooter' ? shooters : retouchers
-  const container = document.getElementById(`${type}-schedule`)
-  if (list.length === 0) { container.innerHTML = ''; return }
-
-  const active = allBookings.filter(b => ['confirmed','shooting','retouching'].includes(b.status))
-  container.innerHTML = `
-    <div style="font-size:10px;letter-spacing:.08em;color:var(--ink-soft);margin-top:1.25rem;margin-bottom:.5rem;text-transform:uppercase">진행 중 스케줄</div>
-    ${list.map(name => {
-      const myJobs = active.filter(b => b[type] === name)
-      return `
-      <div class="schedule-item">
-        <span class="sch-name">${name}</span>
-        <span class="sch-count">${myJobs.length > 0 ? myJobs.map(b => `${new Date(b.wedding_date).getMonth()+1}/${new Date(b.wedding_date).getDate()} ${b.bride_name}`).join(', ') : '예정 없음'}</span>
-        ${myJobs.length > 0 ? `<span class="sch-badge">${myJobs.length}건</span>` : ''}
-      </div>`
-    }).join('')}`
-}
-
-function addMember(type) {
-  const input = document.getElementById(`${type}-input`)
-  const name = input.value.trim()
+async function saveMember() {
+  const id = document.getElementById('m-id').value
+  const name = document.getElementById('m-name').value.trim()
   if (!name) { showToast('이름을 입력해 주세요'); return }
-  const list = type === 'shooter' ? shooters : retouchers
-  if (list.includes(name)) { showToast('이미 등록된 이름이에요'); return }
-  list.push(name)
-  if (type === 'shooter') { shooters = list; localStorage.setItem('tu_shooters', JSON.stringify(shooters)) }
-  else { retouchers = list; localStorage.setItem('tu_retouchers', JSON.stringify(retouchers)) }
-  input.value = ''
-  renderTeam()
+
+  const data = {
+    role: document.getElementById('m-role').value,
+    name,
+    location: document.getElementById('m-location').value.trim() || null,
+    phone: document.getElementById('m-phone').value.trim() || null,
+    kakao_id: document.getElementById('m-kakao').value.trim() || null,
+    instagram: document.getElementById('m-instagram').value.trim() || null,
+    camera: document.getElementById('m-camera').value.trim() || null,
+    lens: document.getElementById('m-lens').value.trim() || null,
+    note: document.getElementById('m-note').value.trim() || null,
+    is_active: true
+  }
+
+  let error
+  if (id) {
+    ({ error } = await sb.from('team_members').update(data).eq('id', id))
+  } else {
+    ({ error } = await sb.from('team_members').insert([data]))
+  }
+
+  if (error) { showToast('저장 실패: ' + error.message); return }
+  closeModal()
+  await loadMembers()
   renderBookings()
-  showToast(`${name} 등록됨`)
+  showToast(id ? '수정되었어요' : `${name} 등록됨`)
 }
 
-function deleteMember(type, idx) {
-  const list = type === 'shooter' ? shooters : retouchers
-  const name = list[idx]
-  list.splice(idx, 1)
-  if (type === 'shooter') { shooters = list; localStorage.setItem('tu_shooters', JSON.stringify(shooters)) }
-  else { retouchers = list; localStorage.setItem('tu_retouchers', JSON.stringify(retouchers)) }
-  renderTeam()
+async function deleteMember(id, name) {
+  if (!confirm(`${name}님을 삭제할까요?`)) return
+  const { error } = await sb.from('team_members').delete().eq('id', id)
+  if (error) { showToast('삭제 실패'); return }
+  await loadMembers()
   renderBookings()
   showToast(`${name} 삭제됨`)
 }
 
 document.getElementById('admin-pw').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin() })
-document.getElementById('shooter-input').addEventListener('keydown', e => { if (e.key === 'Enter') addMember('shooter') })
-document.getElementById('retoucher-input').addEventListener('keydown', e => { if (e.key === 'Enter') addMember('retoucher') })
+document.getElementById('modal').addEventListener('click', e => { if (e.target === document.getElementById('modal')) closeModal() })
 </script>
 </body>
 </html>
