@@ -19,24 +19,38 @@ html,body{min-height:100vh;background:var(--cream2);font-family:'Noto Sans KR',s
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:.875rem 1.25rem;background:var(--ink);position:sticky;top:0;z-index:50}
 .brand{font-family:'Cormorant Garamond',Georgia,serif;font-size:14px;letter-spacing:.14em;color:#fff}
 .brand em{color:var(--rose-light);font-style:normal}
-.admin-badge{font-size:10px;padding:3px 10px;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border-radius:20px;letter-spacing:.06em}
+.top-right{display:flex;gap:8px;align-items:center}
+.top-btn{padding:6px 12px;border:0.5px solid rgba(255,255,255,0.2);border-radius:2px;font-size:11px;color:rgba(255,255,255,0.7);cursor:pointer;background:none;font-family:'Noto Sans KR',sans-serif;display:flex;align-items:center;gap:4px;transition:background .15s}
+.top-btn:hover{background:rgba(255,255,255,0.1)}
 .wrap{max-width:900px;margin:0 auto;padding:1.25rem}
+
+/* 탭 */
+.main-tab{display:flex;gap:0;border-bottom:0.5px solid var(--border);margin-bottom:1.5rem}
+.mtab{padding:10px 20px;font-size:12px;letter-spacing:.06em;color:var(--ink-soft);cursor:pointer;border-bottom:1.5px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:'Noto Sans KR',sans-serif;transition:color .15s;margin-bottom:-0.5px}
+.mtab.on{color:var(--rose-mid);border-bottom-color:var(--rose-mid)}
+.tab-panel{display:none}.tab-panel.on{display:block}
+
+/* 통계 */
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem}
 .stat{background:var(--cream);border:0.5px solid var(--border);border-radius:2px;padding:1rem}
-.stat-n{font-size:26px;font-family:'Cormorant Garamond',Georgia,serif;color:var(--ink);font-weight:400;margin-bottom:2px}
+.stat-n{font-size:26px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;margin-bottom:2px}
 .stat-l{font-size:10px;color:var(--ink-soft);letter-spacing:.06em}
+
+/* 필터 */
 .filter-row{display:flex;gap:8px;margin-bottom:1rem;align-items:center;flex-wrap:wrap}
 .filter-btn{padding:6px 14px;border:0.5px solid var(--border);border-radius:20px;font-size:11px;color:var(--ink-soft);cursor:pointer;background:var(--cream);transition:all .15s;font-family:'Noto Sans KR',sans-serif}
 .filter-btn.on{background:var(--ink);color:var(--cream);border-color:var(--ink)}
-.search-input{padding:7px 12px;border:0.5px solid var(--border);border-radius:2px;font-size:12px;background:var(--cream);color:var(--ink);font-family:'Noto Sans KR',sans-serif;outline:none;width:180px;-webkit-appearance:none}
+.search-input{padding:7px 12px;border:0.5px solid var(--border);border-radius:2px;font-size:12px;background:var(--cream);color:var(--ink);font-family:'Noto Sans KR',sans-serif;outline:none;width:180px}
 .search-input:focus{border-color:var(--rose)}
+
+/* 예약 카드 */
 .booking-list{display:flex;flex-direction:column;gap:8px}
 .booking-card{background:var(--cream);border:0.5px solid var(--border);border-radius:2px;overflow:hidden;transition:border-color .15s}
 .booking-card:hover{border-color:var(--rose-light)}
 .booking-card.expanded{border-color:var(--rose)}
 .bc-header{display:flex;align-items:center;gap:12px;padding:.875rem 1.125rem;cursor:pointer;flex-wrap:wrap}
-.bc-date{font-size:11px;color:var(--ink-soft);min-width:60px;font-family:'Cormorant Garamond',Georgia,serif;letter-spacing:.04em}
-.bc-name{font-size:14px;color:var(--ink);font-weight:400;min-width:70px}
+.bc-date{font-size:11px;color:var(--ink-soft);min-width:55px;font-family:'Cormorant Garamond',Georgia,serif}
+.bc-name{font-size:14px;color:var(--ink);min-width:70px}
 .bc-venue{font-size:11px;color:var(--ink-soft);flex:1}
 .bc-pkg{font-size:10px;padding:3px 8px;border-radius:20px;border:0.5px solid var(--border);color:var(--ink-mid);white-space:nowrap}
 .bc-pkg.plus{background:var(--ink);color:var(--rose-light);border-color:var(--ink)}
@@ -55,35 +69,64 @@ html,body{min-height:100vh;background:var(--cream2);font-family:'Noto Sans KR',s
 .bc-info{font-size:12px;color:var(--ink-mid);line-height:2}
 .bc-info span{color:var(--ink)}
 .assign-row{display:flex;gap:8px;align-items:center;margin-top:.375rem}
-.assign-input{flex:1;padding:8px 10px;border:0.5px solid var(--border);border-radius:2px;font-size:12px;background:var(--cream);color:var(--ink);font-family:'Noto Sans KR',sans-serif;outline:none;-webkit-appearance:none}
-.assign-input:focus{border-color:var(--rose)}
+.assign-select{flex:1;padding:8px 10px;border:0.5px solid var(--border);border-radius:2px;font-size:12px;background:var(--cream);color:var(--ink);font-family:'Noto Sans KR',sans-serif;outline:none;cursor:pointer}
+.assign-select:focus{border-color:var(--rose)}
 .assign-btn{padding:8px 14px;background:var(--ink);color:var(--cream);border:none;border-radius:2px;font-size:11px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap;transition:opacity .15s}
 .assign-btn:hover{opacity:.85}
-.status-select{flex:1;padding:8px 10px;border:0.5px solid var(--border);border-radius:2px;font-size:12px;background:var(--cream);color:var(--ink);font-family:'Noto Sans KR',sans-serif;outline:none;cursor:pointer;-webkit-appearance:none}
-.update-btn{padding:8px 14px;background:var(--rose-mid);color:#fff;border:none;border-radius:2px;font-size:11px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap;transition:opacity .15s}
+.status-select{flex:1;padding:8px 10px;border:0.5px solid var(--border);border-radius:2px;font-size:12px;background:var(--cream);color:var(--ink);font-family:'Noto Sans KR',sans-serif;outline:none;cursor:pointer}
+.update-btn{padding:8px 14px;background:var(--rose-mid);color:#fff;border:none;border-radius:2px;font-size:11px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap}
 .update-btn:hover{opacity:.9}
 .memo-area{width:100%;min-height:64px;padding:8px 10px;border:0.5px solid var(--border);border-radius:2px;font-size:12px;resize:vertical;font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--ink);outline:none;margin-top:.375rem}
 .memo-area:focus{border-color:var(--rose)}
-.empty{text-align:center;padding:3rem;color:var(--ink-soft);font-size:13px}
+.field-label{font-size:11px;color:var(--ink-soft);margin-bottom:.375rem}
+
+/* 팀원 관리 */
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.team-section{background:var(--cream);border:0.5px solid var(--border);border-radius:2px;padding:1.25rem}
+.team-title{font-size:13px;color:var(--ink);margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between}
+.team-title span{font-size:10px;letter-spacing:.08em;color:var(--ink-soft);text-transform:uppercase}
+.member-list{display:flex;flex-direction:column;gap:6px;margin-bottom:1rem}
+.member-item{display:flex;align-items:center;justify-content:space-between;padding:.625rem .875rem;border:0.5px solid var(--border);border-radius:2px;background:var(--cream2)}
+.member-name{font-size:13px;color:var(--ink)}
+.member-role{font-size:10px;color:var(--ink-soft);margin-top:1px}
+.member-del{background:none;border:none;cursor:pointer;color:var(--ink-soft);font-size:14px;padding:2px;transition:color .15s}
+.member-del:hover{color:#E24B4A}
+.member-count{font-size:10px;color:var(--ink-soft);background:var(--cream2);padding:2px 7px;border-radius:10px;border:0.5px solid var(--border)}
+.add-member-row{display:flex;gap:8px}
+.add-member-input{flex:1;padding:9px 12px;border:0.5px solid var(--border);border-radius:2px;font-size:13px;background:var(--cream);color:var(--ink);font-family:'Noto Sans KR',sans-serif;outline:none}
+.add-member-input:focus{border-color:var(--rose)}
+.add-btn{padding:9px 16px;background:var(--rose-mid);color:#fff;border:none;border-radius:2px;font-size:12px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap}
+.add-btn:hover{opacity:.9}
+.empty-member{font-size:12px;color:var(--ink-soft);text-align:center;padding:1.5rem;border:0.5px dashed var(--border);border-radius:2px;margin-bottom:1rem}
+
+/* 스케줄 뷰 */
+.schedule-list{display:flex;flex-direction:column;gap:6px;margin-top:1rem}
+.schedule-item{display:flex;align-items:center;gap:10px;padding:.625rem .875rem;background:var(--cream2);border-radius:2px;font-size:12px}
+.sch-name{color:var(--ink);min-width:80px;font-weight:400}
+.sch-count{font-size:11px;color:var(--ink-soft)}
+.sch-badge{font-size:10px;padding:2px 8px;border-radius:10px;background:var(--rose-light);color:var(--rose-mid);margin-left:auto}
+
+/* 로그인 */
 .login-wrap{max-width:360px;margin:5rem auto;padding:2rem;background:var(--cream);border:0.5px solid var(--border);border-radius:2px}
 .login-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;color:var(--ink);margin-bottom:.375rem}
 .login-sub{font-size:12px;color:var(--ink-soft);margin-bottom:1.5rem;line-height:1.6}
 .login-field{margin-bottom:.875rem}
 .login-field label{display:block;font-size:10px;letter-spacing:.08em;color:var(--ink-soft);margin-bottom:.35rem;text-transform:uppercase}
-.login-field input{width:100%;padding:10px 12px;border:0.5px solid var(--border);border-radius:2px;font-size:13px;background:var(--cream);color:var(--ink);font-family:'Noto Sans KR',sans-serif;outline:none;-webkit-appearance:none}
+.login-field input{width:100%;padding:10px 12px;border:0.5px solid var(--border);border-radius:2px;font-size:13px;background:var(--cream);color:var(--ink);font-family:'Noto Sans KR',sans-serif;outline:none}
 .login-field input:focus{border-color:var(--rose)}
-.login-btn{width:100%;padding:13px;background:var(--ink);color:var(--cream);border:none;border-radius:2px;font-size:12px;letter-spacing:.1em;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:opacity .15s}
+.login-btn{width:100%;padding:13px;background:var(--ink);color:var(--cream);border:none;border-radius:2px;font-size:12px;letter-spacing:.1em;cursor:pointer;font-family:'Noto Sans KR',sans-serif}
 .login-btn:hover{opacity:.85}
+
 .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--cream);padding:.75rem 1.5rem;border-radius:2px;font-size:12px;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1}
-.refresh-btn{padding:6px 12px;border:0.5px solid rgba(255,255,255,0.2);border-radius:2px;font-size:11px;color:rgba(255,255,255,0.7);cursor:pointer;background:none;font-family:'Noto Sans KR',sans-serif;display:flex;align-items:center;gap:4px;transition:background .15s}
-.refresh-btn:hover{background:rgba(255,255,255,0.1)}
 .loading-row{text-align:center;padding:2.5rem;color:var(--ink-soft);font-size:12px}
-.field-label{font-size:11px;color:var(--ink-soft);margin-bottom:.375rem}
+.empty{text-align:center;padding:3rem;color:var(--ink-soft);font-size:13px}
+
 @media(max-width:600px){
   .bc-grid{grid-template-columns:1fr}
   .stat-grid{grid-template-columns:repeat(2,1fr)}
   .bc-venue{display:none}
+  .team-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -95,44 +138,85 @@ html,body{min-height:100vh;background:var(--cream2);font-family:'Noto Sans KR',s
 <div id="s-login">
   <div class="topbar">
     <div class="brand">TEAM<em>.</em>UPHILL</div>
-    <span class="admin-badge">ADMIN</span>
+    <span style="font-size:10px;padding:3px 10px;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border-radius:20px;letter-spacing:.06em">ADMIN</span>
   </div>
   <div class="login-wrap">
     <div class="login-title">관리자 로그인</div>
     <div class="login-sub">팀업힐 관리자만 접근할 수 있습니다.</div>
-    <div class="login-field"><label>아이디</label><input id="admin-id" placeholder="관리자 아이디" type="text" autocomplete="username"></div>
-    <div class="login-field"><label>비밀번호</label><input id="admin-pw" placeholder="비밀번호" type="password" autocomplete="current-password"></div>
+    <div class="login-field"><label>아이디</label><input id="admin-id" type="text" autocomplete="username"></div>
+    <div class="login-field"><label>비밀번호</label><input id="admin-pw" type="password" autocomplete="current-password"></div>
     <button class="login-btn" onclick="doLogin()">로그인</button>
   </div>
 </div>
 
-<!-- 메인 대시보드 -->
+<!-- 메인 -->
 <div id="s-main" style="display:none">
   <div class="topbar">
-    <div class="brand">TEAM<em>.</em>UPHILL <em style="font-size:10px;letter-spacing:.08em;margin-left:8px;opacity:.7">ADMIN</em></div>
-    <div style="display:flex;gap:8px">
-      <button class="refresh-btn" onclick="loadBookings()"><i class="ti ti-refresh"></i> 새로고침</button>
-      <button class="refresh-btn" onclick="doLogout()"><i class="ti ti-logout"></i> 로그아웃</button>
+    <div class="brand">TEAM<em>.</em>UPHILL <em style="font-size:10px;letter-spacing:.08em;margin-left:8px;opacity:.6">ADMIN</em></div>
+    <div class="top-right">
+      <button class="top-btn" onclick="loadAll()"><i class="ti ti-refresh"></i> 새로고침</button>
+      <button class="top-btn" onclick="doLogout()"><i class="ti ti-logout"></i> 로그아웃</button>
     </div>
   </div>
   <div class="wrap">
-    <div class="stat-grid">
-      <div class="stat"><div class="stat-n" id="st-total" style="color:var(--rose-mid)">-</div><div class="stat-l">전체 예약</div></div>
-      <div class="stat"><div class="stat-n" id="st-pending" style="color:#BA7517">-</div><div class="stat-l">확인 대기</div></div>
-      <div class="stat"><div class="stat-n" id="st-progress" style="color:#185FA5">-</div><div class="stat-l">진행 중</div></div>
-      <div class="stat"><div class="stat-n" id="st-done" style="color:var(--sage)">-</div><div class="stat-l">납품 완료</div></div>
+    <!-- 메인 탭 -->
+    <div class="main-tab">
+      <button class="mtab on" onclick="goTab('bookings',this)">예약 관리</button>
+      <button class="mtab" onclick="goTab('team',this)">팀원 관리</button>
     </div>
-    <div class="filter-row">
-      <button class="filter-btn on" onclick="setFilter('all',this)">전체</button>
-      <button class="filter-btn" onclick="setFilter('pending',this)">확인 대기</button>
-      <button class="filter-btn" onclick="setFilter('confirmed',this)">예약 확정</button>
-      <button class="filter-btn" onclick="setFilter('shooting',this)">촬영 완료</button>
-      <button class="filter-btn" onclick="setFilter('retouching',this)">리터칭 중</button>
-      <button class="filter-btn" onclick="setFilter('done',this)">납품 완료</button>
-      <input class="search-input" id="search" placeholder="이름 · 예식장 검색" oninput="renderList()">
+
+    <!-- 예약 관리 탭 -->
+    <div id="tab-bookings" class="tab-panel on">
+      <div class="stat-grid">
+        <div class="stat"><div class="stat-n" id="st-total" style="color:var(--rose-mid)">-</div><div class="stat-l">전체 예약</div></div>
+        <div class="stat"><div class="stat-n" id="st-pending" style="color:#BA7517">-</div><div class="stat-l">확인 대기</div></div>
+        <div class="stat"><div class="stat-n" id="st-progress" style="color:#185FA5">-</div><div class="stat-l">진행 중</div></div>
+        <div class="stat"><div class="stat-n" id="st-done" style="color:var(--sage)">-</div><div class="stat-l">납품 완료</div></div>
+      </div>
+      <div class="filter-row">
+        <button class="filter-btn on" onclick="setFilter('all',this)">전체</button>
+        <button class="filter-btn" onclick="setFilter('pending',this)">확인 대기</button>
+        <button class="filter-btn" onclick="setFilter('confirmed',this)">예약 확정</button>
+        <button class="filter-btn" onclick="setFilter('shooting',this)">촬영 완료</button>
+        <button class="filter-btn" onclick="setFilter('retouching',this)">리터칭 중</button>
+        <button class="filter-btn" onclick="setFilter('done',this)">납품 완료</button>
+        <input class="search-input" id="search" placeholder="이름 · 예식장 검색" oninput="renderBookings()">
+      </div>
+      <div class="booking-list" id="booking-list">
+        <div class="loading-row">불러오는 중...</div>
+      </div>
     </div>
-    <div class="booking-list" id="booking-list">
-      <div class="loading-row">예약 목록 불러오는 중...</div>
+
+    <!-- 팀원 관리 탭 -->
+    <div id="tab-team" class="tab-panel">
+      <div class="team-grid">
+        <!-- 촬영자 -->
+        <div class="team-section">
+          <div class="team-title">
+            <span>SHOOTER</span>
+            촬영자 (홈마) 관리
+          </div>
+          <div class="member-list" id="shooter-list"></div>
+          <div class="add-member-row">
+            <input class="add-member-input" id="shooter-input" placeholder="촬영자 이름 입력" type="text">
+            <button class="add-btn" onclick="addMember('shooter')">등록</button>
+          </div>
+          <div class="schedule-list" id="shooter-schedule"></div>
+        </div>
+        <!-- 리터처 -->
+        <div class="team-section">
+          <div class="team-title">
+            <span>RETOUCHER</span>
+            리터처 관리
+          </div>
+          <div class="member-list" id="retoucher-list"></div>
+          <div class="add-member-row">
+            <input class="add-member-input" id="retoucher-input" placeholder="리터처 이름 입력" type="text">
+            <button class="add-btn" onclick="addMember('retoucher')">등록</button>
+          </div>
+          <div class="schedule-list" id="retoucher-schedule"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -146,22 +230,12 @@ const ADMIN_ID = 'teamuphill'
 const ADMIN_PW = 'uphill2024!'
 
 let allBookings = []
+let shooters = JSON.parse(localStorage.getItem('tu_shooters') || '[]')
+let retouchers = JSON.parse(localStorage.getItem('tu_retouchers') || '[]')
 let currentFilter = 'all'
 
-const STATUS_LABEL = {
-  pending: '확인 대기',
-  confirmed: '예약 확정',
-  shooting: '촬영 완료',
-  retouching: '리터칭 중',
-  done: '납품 완료'
-}
-const STATUS_CLASS = {
-  pending: 'status-pending',
-  confirmed: 'status-confirmed',
-  shooting: 'status-shooting',
-  retouching: 'status-retouching',
-  done: 'status-done'
-}
+const STATUS_LABEL = { pending:'확인 대기', confirmed:'예약 확정', shooting:'촬영 완료', retouching:'리터칭 중', done:'납품 완료' }
+const STATUS_CLASS = { pending:'status-pending', confirmed:'status-confirmed', shooting:'status-shooting', retouching:'status-retouching', done:'status-done' }
 
 function showToast(msg) {
   const t = document.getElementById('toast')
@@ -176,7 +250,7 @@ function doLogin() {
   if (id === ADMIN_ID && pw === ADMIN_PW) {
     document.getElementById('s-login').style.display = 'none'
     document.getElementById('s-main').style.display = 'block'
-    loadBookings()
+    loadAll()
   } else {
     showToast('아이디 또는 비밀번호가 틀렸어요')
   }
@@ -185,17 +259,28 @@ function doLogin() {
 function doLogout() {
   document.getElementById('s-login').style.display = 'block'
   document.getElementById('s-main').style.display = 'none'
-  document.getElementById('admin-id').value = ''
-  document.getElementById('admin-pw').value = ''
+}
+
+function goTab(id, el) {
+  document.querySelectorAll('.mtab').forEach(t => t.classList.remove('on'))
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('on'))
+  el.classList.add('on')
+  document.getElementById('tab-' + id).classList.add('on')
+}
+
+async function loadAll() {
+  await loadBookings()
+  renderTeam()
 }
 
 async function loadBookings() {
   document.getElementById('booking-list').innerHTML = '<div class="loading-row">불러오는 중...</div>'
   const { data, error } = await sb.from('bookings').select('*').order('created_at', { ascending: false })
-  if (error) { showToast('불러오기 실패: ' + error.message); return }
+  if (error) { showToast('불러오기 실패'); return }
   allBookings = data || []
   updateStats()
-  renderList()
+  renderBookings()
+  renderSchedule()
 }
 
 function updateStats() {
@@ -209,32 +294,30 @@ function setFilter(f, el) {
   currentFilter = f
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('on'))
   el.classList.add('on')
-  renderList()
+  renderBookings()
 }
 
-function renderList() {
+function renderBookings() {
   const q = document.getElementById('search').value.toLowerCase()
   let list = allBookings
   if (currentFilter !== 'all') list = list.filter(b => b.status === currentFilter)
-  if (q) list = list.filter(b =>
-    (b.bride_name||'').includes(q) ||
-    (b.venue||'').toLowerCase().includes(q) ||
-    (b.phone||'').includes(q)
-  )
+  if (q) list = list.filter(b => (b.bride_name||'').includes(q) || (b.venue||'').toLowerCase().includes(q) || (b.phone||'').includes(q))
 
   const container = document.getElementById('booking-list')
-  if (list.length === 0) {
-    container.innerHTML = '<div class="empty">해당 예약이 없어요</div>'
-    return
-  }
+  if (list.length === 0) { container.innerHTML = '<div class="empty">해당 예약이 없어요</div>'; return }
 
   container.innerHTML = list.map(b => {
     const d = new Date(b.wedding_date)
     const dateStr = `${d.getMonth()+1}/${d.getDate()}`
     const isPlus = b.package === 'plus'
-    const statusClass = STATUS_CLASS[b.status] || 'status-pending'
-    const statusLabel = STATUS_LABEL[b.status] || '확인 대기'
-    const createdAt = new Date(b.created_at).toLocaleDateString('ko-KR', {month:'numeric',day:'numeric'})
+    const createdAt = new Date(b.created_at).toLocaleDateString('ko-KR', {month:'numeric', day:'numeric'})
+
+    const shooterOptions = ['<option value="">선택 안 함</option>',
+      ...shooters.map(s => `<option value="${s}" ${b.shooter===s?'selected':''}>${s}</option>`)
+    ].join('')
+    const retoucherOptions = ['<option value="">선택 안 함</option>',
+      ...retouchers.map(r => `<option value="${r}" ${b.retoucher===r?'selected':''}>${r}</option>`)
+    ].join('')
 
     return `
     <div class="booking-card" id="card-${b.id}">
@@ -243,7 +326,7 @@ function renderList() {
         <span class="bc-name">${b.bride_name}</span>
         <span class="bc-venue">${b.venue}</span>
         <span class="bc-pkg ${isPlus?'plus':''}">${isPlus?'플러스':'베이직'}</span>
-        <span class="bc-status ${statusClass}">${statusLabel}</span>
+        <span class="bc-status ${STATUS_CLASS[b.status]||'status-pending'}">${STATUS_LABEL[b.status]||'확인 대기'}</span>
         <i class="ti ti-chevron-down bc-arrow"></i>
       </div>
       <div class="bc-body">
@@ -266,14 +349,14 @@ function renderList() {
             <div style="margin-bottom:1rem">
               <div class="field-label">촬영자 (홈마)</div>
               <div class="assign-row">
-                <input class="assign-input" id="shooter-${b.id}" placeholder="촬영자 이름" value="${b.shooter||''}">
+                <select class="assign-select" id="shooter-${b.id}">${shooterOptions}</select>
                 <button class="assign-btn" onclick="saveField('${b.id}','shooter')">저장</button>
               </div>
             </div>
             <div style="margin-bottom:1rem">
               <div class="field-label">리터처</div>
               <div class="assign-row">
-                <input class="assign-input" id="retoucher-${b.id}" placeholder="리터처 이름" value="${b.retoucher||''}">
+                <select class="assign-select" id="retoucher-${b.id}">${retoucherOptions}</select>
                 <button class="assign-btn" onclick="saveField('${b.id}','retoucher')">저장</button>
               </div>
             </div>
@@ -305,11 +388,13 @@ function toggleCard(id) {
 }
 
 async function saveField(id, field) {
-  const val = document.getElementById(`${field}-${id}`).value
+  const el = document.getElementById(`${field}-${id}`)
+  const val = el.value
   const { error } = await sb.from('bookings').update({ [field]: val }).eq('id', id)
   if (error) { showToast('저장 실패'); return }
   const b = allBookings.find(b => b.id === id)
   if (b) b[field] = val
+  renderSchedule()
   showToast(field === 'memo' ? '메모 저장됨' : '배정 저장됨')
 }
 
@@ -320,13 +405,92 @@ async function updateStatus(id) {
   const b = allBookings.find(b => b.id === id)
   if (b) b.status = val
   updateStats()
-  renderList()
+  renderBookings()
   showToast('상태 변경됨 → ' + STATUS_LABEL[val])
 }
 
-document.getElementById('admin-pw').addEventListener('keydown', e => {
-  if (e.key === 'Enter') doLogin()
-})
+// ── 팀원 관리 ──
+function renderTeam() {
+  renderMemberList('shooter')
+  renderMemberList('retoucher')
+  renderSchedule()
+}
+
+function renderMemberList(type) {
+  const list = type === 'shooter' ? shooters : retouchers
+  const container = document.getElementById(`${type}-list`)
+  if (list.length === 0) {
+    container.innerHTML = `<div class="empty-member">${type === 'shooter' ? '등록된 촬영자가 없어요' : '등록된 리터처가 없어요'}</div>`
+    return
+  }
+  container.innerHTML = list.map((name, i) => {
+    const count = allBookings.filter(b => b[type] === name).length
+    return `
+    <div class="member-item">
+      <div>
+        <div class="member-name">${name}</div>
+        <div class="member-role">${type === 'shooter' ? '촬영자 (홈마)' : '리터처'} · 담당 ${count}건</div>
+      </div>
+      <button class="member-del" onclick="deleteMember('${type}',${i})" title="삭제">
+        <i class="ti ti-x"></i>
+      </button>
+    </div>`
+  }).join('')
+}
+
+function renderSchedule() {
+  renderScheduleFor('shooter')
+  renderScheduleFor('retoucher')
+}
+
+function renderScheduleFor(type) {
+  const list = type === 'shooter' ? shooters : retouchers
+  const container = document.getElementById(`${type}-schedule`)
+  if (list.length === 0) { container.innerHTML = ''; return }
+
+  const active = allBookings.filter(b => ['confirmed','shooting','retouching'].includes(b.status))
+  container.innerHTML = `
+    <div style="font-size:10px;letter-spacing:.08em;color:var(--ink-soft);margin-top:1.25rem;margin-bottom:.5rem;text-transform:uppercase">진행 중 스케줄</div>
+    ${list.map(name => {
+      const myJobs = active.filter(b => b[type] === name)
+      return `
+      <div class="schedule-item">
+        <span class="sch-name">${name}</span>
+        <span class="sch-count">${myJobs.length > 0 ? myJobs.map(b => `${new Date(b.wedding_date).getMonth()+1}/${new Date(b.wedding_date).getDate()} ${b.bride_name}`).join(', ') : '예정 없음'}</span>
+        ${myJobs.length > 0 ? `<span class="sch-badge">${myJobs.length}건</span>` : ''}
+      </div>`
+    }).join('')}`
+}
+
+function addMember(type) {
+  const input = document.getElementById(`${type}-input`)
+  const name = input.value.trim()
+  if (!name) { showToast('이름을 입력해 주세요'); return }
+  const list = type === 'shooter' ? shooters : retouchers
+  if (list.includes(name)) { showToast('이미 등록된 이름이에요'); return }
+  list.push(name)
+  if (type === 'shooter') { shooters = list; localStorage.setItem('tu_shooters', JSON.stringify(shooters)) }
+  else { retouchers = list; localStorage.setItem('tu_retouchers', JSON.stringify(retouchers)) }
+  input.value = ''
+  renderTeam()
+  renderBookings()
+  showToast(`${name} 등록됨`)
+}
+
+function deleteMember(type, idx) {
+  const list = type === 'shooter' ? shooters : retouchers
+  const name = list[idx]
+  list.splice(idx, 1)
+  if (type === 'shooter') { shooters = list; localStorage.setItem('tu_shooters', JSON.stringify(shooters)) }
+  else { retouchers = list; localStorage.setItem('tu_retouchers', JSON.stringify(retouchers)) }
+  renderTeam()
+  renderBookings()
+  showToast(`${name} 삭제됨`)
+}
+
+document.getElementById('admin-pw').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin() })
+document.getElementById('shooter-input').addEventListener('keydown', e => { if (e.key === 'Enter') addMember('shooter') })
+document.getElementById('retoucher-input').addEventListener('keydown', e => { if (e.key === 'Enter') addMember('retoucher') })
 </script>
 </body>
 </html>
