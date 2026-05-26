@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -16,10 +17,8 @@
 }
 html,body{min-height:100vh;background:var(--cream);font-family:'Noto Sans KR',sans-serif;color:var(--ink)}
 .page{display:none}.page.on{display:block}
-
-/* 공통 */
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:0.5px solid var(--border);background:var(--cream);position:sticky;top:0;z-index:50}
-.brand{font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;letter-spacing:.14em;color:var(--ink);text-decoration:none}
+.brand{font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;letter-spacing:.14em;color:var(--ink)}
 .brand em{color:var(--rose-mid);font-style:normal}
 .wrap{max-width:680px;margin:0 auto;padding:1.5rem 1.25rem 4rem}
 .section{padding:2.5rem 1.25rem;border-bottom:0.5px solid var(--border);max-width:680px;margin:0 auto}
@@ -54,8 +53,6 @@ html,body{min-height:100vh;background:var(--cream);font-family:'Noto Sans KR',sa
 .user-chip{display:flex;align-items:center;gap:7px}
 .avatar{width:30px;height:30px;border-radius:50%;background:var(--rose-light);border:0.5px solid var(--rose);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--rose-mid)}
 .uname{font-size:12px;color:var(--ink-mid)}
-
-/* 진행바 */
 .progress-box{padding:1.125rem 1.25rem;background:var(--cream);border:0.5px solid var(--border);border-radius:2px;margin-bottom:1.25rem}
 .prog-meta{font-size:10px;letter-spacing:.08em;color:var(--ink-soft);margin-bottom:.875rem;font-family:'Cormorant Garamond',Georgia,serif}
 .steps{display:flex;align-items:flex-start}
@@ -68,8 +65,6 @@ html,body{min-height:100vh;background:var(--cream);font-family:'Noto Sans KR',sa
 .slabel{font-size:9px;color:var(--ink-soft);margin-top:5px;text-align:center;line-height:1.4}
 .step.done .slabel{color:var(--sage)}
 .step.now .slabel{color:var(--rose-mid);font-weight:500}
-
-/* 타임라인 */
 .tl-item{display:flex;gap:12px;padding:8px 0;border-bottom:0.5px solid var(--border);align-items:flex-start}
 .tl-item:last-child{border-bottom:none}
 .tl-dot{width:7px;height:7px;border-radius:50%;margin-top:4px;flex-shrink:0}
@@ -77,8 +72,6 @@ html,body{min-height:100vh;background:var(--cream);font-family:'Noto Sans KR',sa
 .tl-dt{font-size:10px;color:var(--ink-soft);margin-bottom:1px}
 .tl-tx{font-size:12px;color:var(--ink-mid);line-height:1.5}
 .tl-tx.now{color:var(--rose-mid)}
-
-/* 랜딩 */
 .hero{padding:3rem 1.25rem 2.5rem;border-bottom:0.5px solid var(--border);max-width:680px;margin:0 auto}
 .hero-eye{font-size:10px;letter-spacing:.14em;color:var(--rose-mid);margin-bottom:.875rem;font-family:'Cormorant Garamond',Georgia,serif}
 .hero-title{font-size:28px;line-height:1.4;margin-bottom:1.125rem;font-weight:400;letter-spacing:-.02em}
@@ -87,8 +80,7 @@ html,body{min-height:100vh;background:var(--cream);font-family:'Noto Sans KR',sa
 .hero-btns{display:flex;gap:10px;flex-wrap:wrap}
 .h-btn-p{padding:13px 24px;background:var(--ink);color:var(--cream);border:none;border-radius:2px;font-size:12px;letter-spacing:.1em;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:opacity .15s}
 .h-btn-p:hover{opacity:.85}
-.h-btn-s{padding:12px 20px;background:transparent;color:var(--ink-mid);border:0.5px solid var(--border);border-radius:2px;font-size:12px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:border-color .15s}
-.h-btn-s:hover{border-color:var(--rose);color:var(--rose-mid)}
+.h-btn-s{padding:12px 20px;background:transparent;color:var(--ink-mid);border:0.5px solid var(--border);border-radius:2px;font-size:12px;cursor:pointer;font-family:'Noto Sans KR',sans-serif}
 .diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
 .diff-card{border:0.5px solid var(--border);border-radius:2px;overflow:hidden}
 .diff-head{padding:.625rem 1rem;font-size:11px;color:var(--ink-soft);background:var(--cream2);border-bottom:0.5px solid var(--border)}
@@ -129,13 +121,10 @@ html,body{min-height:100vh;background:var(--cream);font-family:'Noto Sans KR',sa
 .cta-blk{padding:3rem 1.25rem;text-align:center;background:var(--ink)}
 .cta-blk-t{font-size:22px;color:var(--cream);margin-bottom:.625rem;font-weight:400;line-height:1.4}
 .cta-blk-s{font-size:12px;color:var(--ink-soft);margin-bottom:1.75rem;line-height:1.7}
-.cta-blk-btn{padding:14px 40px;background:var(--rose-mid);color:var(--cream);border:none;border-radius:2px;font-size:12px;letter-spacing:.1em;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:opacity .15s}
-.cta-blk-btn:hover{opacity:.9}
+.cta-blk-btn{padding:14px 40px;background:var(--rose-mid);color:var(--cream);border:none;border-radius:2px;font-size:12px;letter-spacing:.1em;cursor:pointer;font-family:'Noto Sans KR',sans-serif}
 .cta-blk-n{font-size:10px;color:var(--ink-soft);margin-top:.875rem}
 footer{padding:1.25rem;display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid var(--border)}
 footer span{font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
-
-/* 예약 */
 .pkg-sel-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem}
 .pkg-sel{border:0.5px solid var(--border);border-radius:2px;padding:1.125rem;cursor:pointer;background:var(--cream);transition:all .15s;position:relative}
 .pkg-sel:hover{border-color:var(--rose-light)}
@@ -148,11 +137,6 @@ footer span{font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
 .pdot{width:3px;height:3px;border-radius:50%;background:var(--rose-light);margin-top:5px;flex-shrink:0}
 .pkg-sel.on .pdot{background:var(--rose-mid)}
 .rec-tag{position:absolute;top:0;right:0;background:var(--rose-mid);color:#fff;font-size:9px;padding:3px 8px;border-radius:0 2px 0 4px;letter-spacing:.04em}
-
-/* 로그인 */
-.login-wrap{max-width:400px;margin:3rem auto;padding:0 1.25rem}
-
-/* 사진 셀렉 */
 .sel-bar{display:flex;justify-content:space-between;align-items:center;padding:.75rem 1rem;background:#FBF5F0;border:0.5px solid var(--rose-light);border-radius:2px;margin-bottom:1rem}
 .sel-cnt{font-size:13px;color:var(--rose-mid);font-weight:500}
 .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1.25rem}
@@ -164,21 +148,17 @@ footer span{font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
 .photo.on .chk{background:var(--rose-mid);border-color:var(--rose-mid);color:#fff}
 .upload-zone{border:0.5px dashed var(--border);border-radius:2px;padding:1.5rem;text-align:center;cursor:pointer;transition:border-color .2s}
 .upload-zone:hover{border-color:var(--rose)}
-.imgs-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:.875rem}
-.uimg{width:60px;height:60px;background:var(--cream2);border:0.5px solid var(--border);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--ink-soft);cursor:pointer;position:relative}
-.udel{position:absolute;top:-5px;right:-5px;width:16px;height:16px;border-radius:50%;background:var(--ink);color:var(--cream);font-size:9px;display:flex;align-items:center;justify-content:center;cursor:pointer}
-
-/* 최종본 */
 .done-banner{display:flex;align-items:center;gap:10px;padding:.875rem 1rem;background:#EAF3DE;border:0.5px solid #C0DD97;border-radius:2px;margin-bottom:1rem;font-size:12px;color:#27500A}
 .dl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .dl-item{aspect-ratio:3/4;background:var(--cream2);border:0.5px solid var(--border);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;cursor:pointer;transition:border-color .15s}
 .dl-item:hover{border-color:var(--rose)}
 .dl-item i{font-size:22px;color:var(--ink-soft)}
 .dl-item span{font-size:10px;color:var(--ink-soft)}
-.review-stars{display:flex;gap:6px;margin-bottom:1rem}
 .star{font-size:24px;color:var(--border);cursor:pointer;transition:color .1s;line-height:1}
 .star.on{color:var(--rose-mid)}
-
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--cream);padding:.75rem 1.5rem;border-radius:2px;font-size:12px;letter-spacing:.04em;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.show{opacity:1}
+.loading{opacity:.6;pointer-events:none}
 @media(max-width:480px){
   .hero-title{font-size:22px}
   .str-grid{grid-template-columns:1fr}
@@ -189,6 +169,9 @@ footer span{font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
 </style>
 </head>
 <body>
+
+<!-- 토스트 -->
+<div class="toast" id="toast"></div>
 
 <!-- ① 랜딩 -->
 <div id="p-landing" class="page on">
@@ -310,7 +293,7 @@ footer span{font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
 <!-- ② 예약 신청 -->
 <div id="p-booking" class="page">
   <div class="topbar">
-    <button onclick="goPage('landing')" style="background:none;border:none;cursor:pointer;color:var(--ink-soft);font-size:13px;display:flex;align-items:center;gap:4px"><i class="ti ti-arrow-left"></i></button>
+    <button onclick="goPage('landing')" style="background:none;border:none;cursor:pointer;color:var(--ink-soft);display:flex;align-items:center;gap:4px;font-size:13px"><i class="ti ti-arrow-left"></i></button>
     <div class="brand">TEAM<em>.</em>UPHILL</div>
     <span style="font-size:11px;color:var(--ink-soft);letter-spacing:.06em">예약 신청</span>
   </div>
@@ -318,7 +301,7 @@ footer span{font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
     <div class="notice">예약 신청 후 카카오 알림톡으로 확정 안내를 드립니다. 문의는 카카오채널 <span style="color:var(--rose-mid)">Team.Uphill</span>로 연락 주세요.</div>
     <div class="sec-label">상품 선택</div>
     <div class="pkg-sel-grid">
-      <div class="pkg-sel on" onclick="selPkg(this)">
+      <div class="pkg-sel on" id="pkg-basic" onclick="selPkg('basic')">
         <div class="pkg-tag">BASIC</div>
         <div class="pkg-nm">신부 직캠 베이직</div>
         <div class="pkg-pr">300,000 won</div>
@@ -328,7 +311,7 @@ footer span{font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
         <div class="pkg-it"><span class="pdot"></span>24시간 이내 전체 컷</div>
         <div class="pkg-it"><span class="pdot"></span>신부님 픽 3장 정밀보정</div>
       </div>
-      <div class="pkg-sel" onclick="selPkg(this)" style="position:relative">
+      <div class="pkg-sel" id="pkg-plus" onclick="selPkg('plus')" style="position:relative">
         <div class="rec-tag">추천</div>
         <div class="pkg-tag">PLUS</div>
         <div class="pkg-nm">신부 직캠 플러스</div>
@@ -343,18 +326,18 @@ footer span{font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
     </div>
     <div class="sec-label">기본 정보</div>
     <div class="row2">
-      <div class="field"><label>신부 이름</label><input placeholder="이름" type="text"></div>
-      <div class="field"><label>연락처</label><input placeholder="010-0000-0000" type="tel"></div>
+      <div class="field"><label>신부 이름 *</label><input id="bride-name" placeholder="이름" type="text"></div>
+      <div class="field"><label>연락처 *</label><input id="bride-phone" placeholder="010-0000-0000" type="tel"></div>
     </div>
-    <div class="field"><label>카카오톡 ID</label><input placeholder="알림톡 수신용 카카오톡 ID"></div>
+    <div class="field"><label>카카오톡 ID</label><input id="kakao-id" placeholder="알림톡 수신용 카카오톡 ID"></div>
     <div class="sec-label" style="margin-top:1.25rem">예식 정보</div>
-    <div class="field"><label>예식 날짜</label><input type="date"></div>
-    <div class="field"><label>예식장 및 홀명</label><input placeholder="예식장 이름과 홀명을 함께 입력해 주세요"></div>
+    <div class="field"><label>예식 날짜 *</label><input id="wedding-date" type="date"></div>
+    <div class="field"><label>예식장 및 홀명 *</label><input id="venue" placeholder="예식장 이름과 홀명을 함께 입력해 주세요"></div>
     <div class="row2">
-      <div class="field"><label>예식 시작 시간</label><input type="time"></div>
-      <div class="field"><label>플래너 연락처 (선택)</label><input placeholder="010-0000-0000" type="tel"></div>
+      <div class="field"><label>예식 시작 시간 *</label><input id="wedding-time" type="time"></div>
+      <div class="field"><label>플래너 연락처 (선택)</label><input id="planner-phone" placeholder="010-0000-0000" type="tel"></div>
     </div>
-    <button class="btn" onclick="goPage('status')">예약 신청하기</button>
+    <button class="btn" id="booking-btn" onclick="submitBooking()">예약 신청하기</button>
     <p style="font-size:11px;color:var(--ink-soft);text-align:center;margin-top:.875rem;line-height:1.6">신청 후 영업일 1일 이내 확정 알림톡 발송 · 예식 1주일 전 취소 가능</p>
   </div>
 </div>
@@ -364,54 +347,50 @@ footer span{font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
   <div class="topbar">
     <div class="brand">TEAM<em>.</em>UPHILL</div>
     <div class="user-chip">
-      <div class="avatar">김</div>
-      <span class="uname">김민지 님</span>
+      <div class="avatar" id="status-avatar">김</div>
+      <span class="uname" id="status-name">신부님</span>
     </div>
   </div>
   <div class="wrap">
     <div class="progress-box">
-      <div class="prog-meta">예약 #2024-0312 · 진행 현황</div>
+      <div class="prog-meta" id="booking-no">예약 진행 현황</div>
       <div class="steps">
         <div class="step done"><div class="sdot"><i class="ti ti-check" style="font-size:9px"></i></div><div class="slabel">예약<br>신청</div></div>
-        <div class="step done"><div class="sdot"><i class="ti ti-check" style="font-size:9px"></i></div><div class="slabel">알림톡<br>수신</div></div>
-        <div class="step done"><div class="sdot"><i class="ti ti-check" style="font-size:9px"></i></div><div class="slabel">로그인</div></div>
-        <div class="step now"><div class="sdot" style="font-size:10px">4</div><div class="slabel">사진<br>선택</div></div>
-        <div class="step"><div class="sdot">5</div><div class="slabel">레퍼런스</div></div>
-        <div class="step"><div class="sdot">6</div><div class="slabel">최종본</div></div>
-        <div class="step"><div class="sdot">7</div><div class="slabel">후기</div></div>
+        <div class="step done"><div class="sdot"><i class="ti ti-check" style="font-size:9px"></i></div><div class="slabel">접수<br>완료</div></div>
+        <div class="step now"><div class="sdot" style="font-size:10px">3</div><div class="slabel">사진<br>선택</div></div>
+        <div class="step"><div class="sdot">4</div><div class="slabel">리터칭</div></div>
+        <div class="step"><div class="sdot">5</div><div class="slabel">최종본</div></div>
       </div>
     </div>
     <div class="card">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.875rem">
-        <span class="s-badge"><span class="pulse"></span>진행 중</span>
-        <span style="font-size:11px;color:var(--ink-soft)">완료 예정 · 5월 27일</span>
+        <span class="s-badge"><span class="pulse"></span>예약 접수 완료</span>
+        <span style="font-size:11px;color:var(--ink-soft)">확정 알림톡 발송 예정</span>
       </div>
-      <div style="font-size:16px;color:var(--ink);margin-bottom:.5rem;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400">보정 희망 사진을 선택해 주세요</div>
-      <div style="font-size:13px;color:var(--ink-mid);line-height:1.75">원본 사진이 준비되었어요. 보정을 원하는 사진 <span style="color:var(--rose-mid)">3장</span>을 선택하시면 리터처가 바로 작업을 시작합니다.</div>
+      <div style="font-size:16px;color:var(--ink);margin-bottom:.5rem;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400">예약이 정상 접수되었어요</div>
+      <div style="font-size:13px;color:var(--ink-mid);line-height:1.75">영업일 1일 이내 카카오 알림톡으로 확정 안내를 드릴게요. 예식 당일 원본 사진이 업로드되면 사진 선택 안내를 다시 발송해 드립니다.</div>
       <div style="height:0.5px;background:var(--border);margin:1rem 0"></div>
-      <div class="tl-item"><div class="tl-dot done"></div><div><div class="tl-dt">5월 18일 오후 2:30</div><div class="tl-tx">예식 촬영 완료</div></div></div>
-      <div class="tl-item"><div class="tl-dot done"></div><div><div class="tl-dt">5월 19일 오전 9:15</div><div class="tl-tx">원본 사진 업로드 완료 · 홍길동 홈마</div></div></div>
-      <div class="tl-item"><div class="tl-dot now"></div><div><div class="tl-dt" style="color:var(--rose-mid)">지금</div><div class="tl-tx now">사진 선택 대기 중 — 지금 바로 선택 가능해요</div></div></div>
-      <div class="tl-item"><div class="tl-dot wait"></div><div><div class="tl-dt">예정</div><div class="tl-tx">리터칭 작업 · 선택 완료 후 영업일 3-5일</div></div></div>
-      <div class="tl-item"><div class="tl-dot wait"></div><div><div class="tl-dt">예정</div><div class="tl-tx">최종 보정본 다운로드</div></div></div>
+      <div class="tl-item"><div class="tl-dot done"></div><div><div class="tl-dt">방금</div><div class="tl-tx">예약 신청 접수 완료</div></div></div>
+      <div class="tl-item"><div class="tl-dot now"></div><div><div class="tl-dt" style="color:var(--rose-mid)">예정</div><div class="tl-tx now">팀업힐 확정 알림톡 발송 (영업일 1일 이내)</div></div></div>
+      <div class="tl-item"><div class="tl-dot wait"></div><div><div class="tl-dt">예정</div><div class="tl-tx">예식 당일 촬영 · 원본 업로드</div></div></div>
+      <div class="tl-item"><div class="tl-dot wait"></div><div><div class="tl-dt">예정</div><div class="tl-tx">사진 선택 안내 발송</div></div></div>
+      <div class="tl-item"><div class="tl-dot wait"></div><div><div class="tl-dt">예정</div><div class="tl-tx">리터칭 작업 후 최종본 전달</div></div></div>
     </div>
     <div class="card">
-      <div class="card-title">예약 정보</div>
-      <div class="info-row"><span class="ik">예약 번호</span><span class="iv">#2024-0312</span></div>
-      <div class="info-row"><span class="ik">예식 일시</span><span class="iv">2024. 5. 18 토요일</span></div>
-      <div class="info-row"><span class="ik">예식장</span><span class="iv">더플라자호텔 다이아몬드홀</span></div>
-      <div class="info-row"><span class="ik">상품</span><span class="iv">신부 직캠 베이직</span></div>
-      <div class="info-row"><span class="ik">촬영자</span><span class="iv">홍길동 홈마</span></div>
-      <div class="info-row"><span class="ik">결제</span><span class="iv rose">300,000원</span></div>
+      <div class="card-title">접수된 예약 정보</div>
+      <div class="info-row"><span class="ik">신부 이름</span><span class="iv" id="sv-name">-</span></div>
+      <div class="info-row"><span class="ik">연락처</span><span class="iv" id="sv-phone">-</span></div>
+      <div class="info-row"><span class="ik">예식 날짜</span><span class="iv" id="sv-date">-</span></div>
+      <div class="info-row"><span class="ik">예식장</span><span class="iv" id="sv-venue">-</span></div>
+      <div class="info-row"><span class="ik">상품</span><span class="iv" id="sv-pkg">-</span></div>
     </div>
-    <button class="btn" onclick="goPage('select')">사진 선택하러 가기</button>
+    <button class="btn-out" onclick="goPage('landing')">홈으로 돌아가기</button>
   </div>
 </div>
 
 <!-- ④ 사진 셀렉 + 보정 요청 -->
 <div id="p-select" class="page">
   <div class="topbar">
-    <button onclick="goPage('status')" style="background:none;border:none;cursor:pointer;color:var(--ink-soft);font-size:13px;display:flex;align-items:center;gap:4px"><i class="ti ti-arrow-left"></i></button>
     <div class="brand">TEAM<em>.</em>UPHILL</div>
     <div class="user-chip">
       <div class="avatar">김</div>
@@ -427,18 +406,17 @@ footer span{font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
     <div class="photo-grid" id="pgrid"></div>
     <div class="card">
       <div class="card-title">인물 보정 레퍼런스 이미지</div>
-      <div class="upload-zone" onclick="addUimg()">
+      <div class="upload-zone">
         <i class="ti ti-upload" style="font-size:20px;color:var(--ink-soft)"></i>
         <div style="font-size:12px;color:var(--ink-soft);margin-top:.375rem">원하는 보정 스타일 이미지 업로드</div>
         <div style="font-size:10px;color:var(--ink-soft);margin-top:2px">JPG · PNG · 최대 5장</div>
       </div>
-      <div class="imgs-row" id="imgs-row"></div>
     </div>
     <div class="card">
       <div class="card-title">추가 요청사항</div>
-      <textarea style="width:100%;min-height:88px;padding:10px 12px;border:0.5px solid var(--border);border-radius:2px;font-size:13px;resize:vertical;font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--ink);outline:none;transition:border-color .2s" placeholder="원하는 보정 스타일을 자유롭게 작성해 주세요.&#10;예) 자연스러운 피부 톤 유지, 눈 보정 없음, 밝고 화사한 톤으로 등"></textarea>
+      <textarea id="comment" style="width:100%;min-height:88px;padding:10px 12px;border:0.5px solid var(--border);border-radius:2px;font-size:13px;resize:vertical;font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--ink);outline:none;transition:border-color .2s" placeholder="원하는 보정 스타일을 자유롭게 작성해 주세요.&#10;예) 자연스러운 피부 톤 유지, 눈 보정 없음, 밝고 화사한 톤으로 등"></textarea>
     </div>
-    <button class="btn" id="sel-cta" disabled onclick="goPage('final')">선택 완료 · 보정 요청서 제출</button>
+    <button class="btn" id="sel-cta" disabled onclick="submitSelection()">선택 완료 · 보정 요청서 제출</button>
     <button class="btn-out">보정 스타일 추천받기 ↗</button>
   </div>
 </div>
@@ -473,14 +451,14 @@ footer span{font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
     <div class="card">
       <div class="card-title">서비스 후기</div>
       <p style="font-size:12px;color:var(--ink-soft);margin-bottom:.875rem;line-height:1.6">소중한 후기는 팀업힐의 큰 힘이 됩니다.</p>
-      <div class="review-stars" id="stars">
+      <div style="display:flex;gap:6px;margin-bottom:1rem" id="stars">
         <span class="star" onclick="setStar(1)">★</span>
         <span class="star" onclick="setStar(2)">★</span>
         <span class="star" onclick="setStar(3)">★</span>
         <span class="star" onclick="setStar(4)">★</span>
         <span class="star" onclick="setStar(5)">★</span>
       </div>
-      <textarea style="width:100%;min-height:88px;padding:10px 12px;border:0.5px solid var(--border);border-radius:2px;font-size:13px;resize:vertical;font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--ink);outline:none;transition:border-color .2s" placeholder="서비스 이용 후기를 남겨주세요."></textarea>
+      <textarea style="width:100%;min-height:88px;padding:10px 12px;border:0.5px solid var(--border);border-radius:2px;font-size:13px;resize:vertical;font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--ink);outline:none" placeholder="서비스 이용 후기를 남겨주세요."></textarea>
       <button class="btn" style="margin-top:.875rem">후기 제출하기</button>
     </div>
     <button class="btn-out" onclick="goPage('landing')">처음으로 돌아가기</button>
@@ -488,42 +466,138 @@ footer span{font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
 </div>
 
 <script>
-function goPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'))
-  document.getElementById('p-'+id).classList.add('on')
-  window.scrollTo(0,0)
+// ── Supabase 초기화 ──
+const SUPABASE_URL = 'https://dbimkejrhqkhjawyawba.supabase.co'
+const SUPABASE_KEY = 'sb_publishable_RSd57Yc0lUA-CTBeu6TfrQ_MK3R1Tbx'
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+
+// ── 현재 선택된 상품 ──
+let selectedPkg = 'basic'
+let currentBookingId = null
+
+// ── 페이지 이동 ──
+function goPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('on'))
+  document.getElementById('p-' + id).classList.add('on')
+  window.scrollTo(0, 0)
 }
-function selPkg(el){
-  document.querySelectorAll('.pkg-sel').forEach(p=>p.classList.remove('on'))
-  el.classList.add('on')
+
+// ── 토스트 메시지 ──
+function showToast(msg, duration = 3000) {
+  const t = document.getElementById('toast')
+  t.textContent = msg
+  t.classList.add('show')
+  setTimeout(() => t.classList.remove('show'), duration)
 }
-const grid=document.getElementById('pgrid')
-const sel=new Set()
-for(let i=1;i<=18;i++){
-  const d=document.createElement('div')
-  d.className='photo'
-  d.innerHTML=`<i class="ti ti-camera" style="font-size:20px;color:var(--ink-soft)"></i><span class="photo-n">#${String(i).padStart(3,'0')}</span><span class="chk"><i class="ti ti-check" style="font-size:9px"></i></span>`
-  d.addEventListener('click',()=>{
-    if(sel.has(i)){sel.delete(i);d.classList.remove('on')}
-    else if(sel.size<3){sel.add(i);d.classList.add('on')}
-    document.getElementById('sel-cnt').textContent=`${sel.size} / 3장 선택`
-    const b=document.getElementById('sel-cta')
-    b.disabled=sel.size<3
+
+// ── 상품 선택 ──
+function selPkg(pkg) {
+  selectedPkg = pkg
+  document.getElementById('pkg-basic').classList.toggle('on', pkg === 'basic')
+  document.getElementById('pkg-plus').classList.toggle('on', pkg === 'plus')
+}
+
+// ── 예약 신청 → Supabase 저장 ──
+async function submitBooking() {
+  const name = document.getElementById('bride-name').value.trim()
+  const phone = document.getElementById('bride-phone').value.trim()
+  const kakaoId = document.getElementById('kakao-id').value.trim()
+  const date = document.getElementById('wedding-date').value
+  const venue = document.getElementById('venue').value.trim()
+  const time = document.getElementById('wedding-time').value
+  const plannerPhone = document.getElementById('planner-phone').value.trim()
+
+  if (!name || !phone || !date || !venue || !time) {
+    showToast('필수 항목을 모두 입력해 주세요')
+    return
+  }
+
+  const btn = document.getElementById('booking-btn')
+  btn.classList.add('loading')
+  btn.textContent = '신청 중...'
+
+  const { data, error } = await sb.from('bookings').insert([{
+    bride_name: name,
+    phone: phone,
+    kakao_id: kakaoId || null,
+    wedding_date: date,
+    venue: venue,
+    wedding_time: time,
+    planner_phone: plannerPhone || null,
+    package: selectedPkg,
+    status: 'pending'
+  }]).select()
+
+  btn.classList.remove('loading')
+  btn.textContent = '예약 신청하기'
+
+  if (error) {
+    showToast('오류가 발생했어요. 다시 시도해 주세요.')
+    console.error(error)
+    return
+  }
+
+  currentBookingId = data[0].id
+
+  // 현황 페이지에 정보 표시
+  document.getElementById('status-avatar').textContent = name.charAt(0)
+  document.getElementById('status-name').textContent = name + ' 님'
+  document.getElementById('booking-no').textContent = '예약 접수 완료 · ' + new Date().toLocaleDateString('ko-KR')
+  document.getElementById('sv-name').textContent = name
+  document.getElementById('sv-phone').textContent = phone
+  document.getElementById('sv-date').textContent = date.replace(/-/g, '. ')
+  document.getElementById('sv-venue').textContent = venue
+  document.getElementById('sv-pkg').textContent = selectedPkg === 'basic' ? '신부 직캠 베이직 · 300,000원' : '신부 직캠 플러스 · 400,000원'
+
+  showToast('예약이 접수되었어요!')
+  goPage('status')
+}
+
+// ── 사진 선택 그리드 ──
+const grid = document.getElementById('pgrid')
+const sel = new Set()
+for (let i = 1; i <= 18; i++) {
+  const d = document.createElement('div')
+  d.className = 'photo'
+  d.innerHTML = `<i class="ti ti-camera" style="font-size:20px;color:var(--ink-soft)"></i><span class="photo-n">#${String(i).padStart(3,'0')}</span><span class="chk"><i class="ti ti-check" style="font-size:9px"></i></span>`
+  d.addEventListener('click', () => {
+    if (sel.has(i)) { sel.delete(i); d.classList.remove('on') }
+    else if (sel.size < 3) { sel.add(i); d.classList.add('on') }
+    document.getElementById('sel-cnt').textContent = `${sel.size} / 3장 선택`
+    document.getElementById('sel-cta').disabled = sel.size < 3
   })
   grid.appendChild(d)
 }
-let uc=0
-function addUimg(){
-  if(uc>=5)return
-  uc++
-  const r=document.getElementById('imgs-row')
-  const d=document.createElement('div')
-  d.className='uimg'
-  d.innerHTML=`<i class="ti ti-photo"></i><span class="udel" onclick="this.parentNode.remove();uc--">×</span>`
-  r.appendChild(d)
+
+// ── 사진 선택 제출 → Supabase 저장 ──
+async function submitSelection() {
+  const comment = document.getElementById('comment').value.trim()
+  const btn = document.getElementById('sel-cta')
+  btn.classList.add('loading')
+  btn.textContent = '제출 중...'
+
+  const { error } = await sb.from('photo_selections').insert([{
+    booking_id: currentBookingId,
+    selected_photos: Array.from(sel).map(n => String(n).padStart(3, '0')),
+    reference_comment: comment || null
+  }])
+
+  btn.classList.remove('loading')
+  btn.textContent = '선택 완료 · 보정 요청서 제출'
+
+  if (error) {
+    showToast('오류가 발생했어요. 다시 시도해 주세요.')
+    console.error(error)
+    return
+  }
+
+  showToast('보정 요청서가 제출되었어요!')
+  goPage('final')
 }
-function setStar(n){
-  document.querySelectorAll('.star').forEach((s,i)=>s.classList.toggle('on',i<n))
+
+// ── 별점 ──
+function setStar(n) {
+  document.querySelectorAll('.star').forEach((s, i) => s.classList.toggle('on', i < n))
 }
 </script>
 </body>
